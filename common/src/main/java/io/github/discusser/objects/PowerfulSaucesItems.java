@@ -22,7 +22,7 @@ public class PowerfulSaucesItems {
 
     public static final RegistrySupplier<SauceItem> KETCHUP = registerSauce("ketchup", Set.of(
             new MobEffectInstance(MobEffects.REGENERATION, 10 * 20, 0)
-    ), 0x850101);
+    ), 0xec0606);
 
     public static final RegistrySupplier<SauceItem> MUSTARD = registerSauce("mustard", Set.of(
             new MobEffectInstance(MobEffects.ABSORPTION,  20 * 20, 0)
@@ -30,7 +30,7 @@ public class PowerfulSaucesItems {
 
     public static RegistrySupplier<SauceItem> registerSauce(String name, Set<MobEffectInstance> effects, int textColor) {
         return ITEMS.register(name, () -> new SauceItem(
-                new Item.Properties().food(SAUCE_FOOD).arch$tab(PowerfulSaucesTabs.SAUCES_TAB.get()),
+                new Item.Properties().food(SAUCE_FOOD).arch$tab(PowerfulSaucesTabs.SAUCES_TAB),
                 effects,
                 TextColor.fromRgb(textColor)
         ));

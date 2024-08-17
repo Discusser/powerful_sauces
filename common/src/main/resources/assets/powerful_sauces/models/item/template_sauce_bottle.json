@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "powerful_sauces:item/sauce_bottle",
+    "layer1": "powerful_sauces:item/sauce_bottle_overlay"
+  }
+}

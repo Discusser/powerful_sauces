@@ -8,9 +8,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
+import static io.github.discusser.PowerfulSauces.MOD_ID;
+
 public class PowerfulSaucesTabs {
     public static final DeferredRegister<CreativeModeTab> TABS =
-            DeferredRegister.create("modid", Registries.CREATIVE_MODE_TAB);
+            DeferredRegister.create(MOD_ID, Registries.CREATIVE_MODE_TAB);
 
     public static final RegistrySupplier<CreativeModeTab> SAUCES_TAB = TABS.register(
             "sauces", // Tab ID
