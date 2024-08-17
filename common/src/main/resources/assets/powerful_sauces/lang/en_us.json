@@ -1,5 +1,6 @@
 {
   "group.powerful_sauces.sauces": "Sauces",
   "item.powerful_sauces.ketchup": "Ketchup",
+  "item.powerful_sauces.mustard": "Mustard",
   "text.powerful_sauces.sauced_with": "Sauced with: %1$s"
 }

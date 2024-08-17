@@ -6,11 +6,12 @@ import io.github.discusser.objects.PowerfulSaucesSerializers;
 import io.github.discusser.objects.items.SauceItem;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.CraftingContainer;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CraftingRecipe;
@@ -18,6 +19,9 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static io.github.discusser.PowerfulSauces.LOGGER;
@@ -31,8 +35,8 @@ public record SaucingRecipe(ResourceLocation id, ItemStack sauce) implements Cra
 
     public boolean isValidFood(ItemStack stack) {
         return stack.getItem().getFoodProperties() != null &&
-                    !(stack.getItem() instanceof SauceItem) &&
-                    !(PowerfulSaucesUtil.isSauced(stack));
+                !(stack.getItem() instanceof SauceItem) &&
+                PowerfulSaucesUtil.tryGetSauces(stack).stream().noneMatch(this.sauce::is);
     }
 
     @Override
@@ -62,8 +66,12 @@ public record SaucingRecipe(ResourceLocation id, ItemStack sauce) implements Cra
 
             ItemStack foodInput = optional.get();
             ItemStack copy = foodInput.copyWithCount(1);
+
             CompoundTag tag = copy.getOrCreateTag();
-            tag.putString(MOD_ID + ":sauce", sauceName.toString());
+            ListTag listTag = tag.getList(MOD_ID + ":sauces", CompoundTag.TAG_STRING);
+            listTag.add(listTag.size(), StringTag.valueOf(sauceName.toString()));
+            tag.put(MOD_ID + ":sauces", listTag);
+
             copy.setTag(tag);
             return copy;
         } else {

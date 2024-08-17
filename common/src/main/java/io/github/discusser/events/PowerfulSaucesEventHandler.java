@@ -17,11 +17,11 @@ public class PowerfulSaucesEventHandler {
     }
 
     private static void clientTooltipItem(ItemStack stack, List<Component> lines, TooltipFlag flag) {
-        SauceItem sauce = PowerfulSaucesUtil.tryGetSauce(stack);
+        List<SauceItem> sauces = PowerfulSaucesUtil.tryGetSauces(stack);
 
-        if (sauce != null) {
+        sauces.forEach(sauce -> {
             MutableComponent sauceName = (MutableComponent) sauce.getName(new ItemStack(sauce));
             lines.add(Component.translatable("text.powerful_sauces.sauced_with", sauceName.withStyle(sauce.getStyle())).withStyle(ChatFormatting.GRAY));
-        }
+        });
     }
 }

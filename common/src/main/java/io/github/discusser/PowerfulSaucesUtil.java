@@ -2,41 +2,45 @@ package io.github.discusser;
 
 import io.github.discusser.objects.items.SauceItem;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
+import java.util.ArrayList;
+import java.util.List;
+
 import static io.github.discusser.PowerfulSauces.MOD_ID;
 
 public class PowerfulSaucesUtil {
     public static boolean isSauced(ItemStack stack) {
-        return tryGetSauceTag(stack) != null;
+        ListTag tag = tryGetSaucesTag(stack);
+        return tag != null && !tag.isEmpty();
     }
 
-    public static String tryGetSauceTag(ItemStack stack) {
+    public static ListTag tryGetSaucesTag(ItemStack stack) {
         if (stack.getTag() == null) return null;
 
-        String location = stack.getTag().getString(MOD_ID + ":sauce");
-        if (location.isEmpty()) return null;
-
-        return location;
+        return stack.getTag().getList(MOD_ID + ":sauces", Tag.TAG_STRING);
     }
 
-    public static ResourceLocation tryGetSauceLocation(ItemStack stack) {
-        String location = tryGetSauceTag(stack);
-        if (location == null) return null;
+    public static List<SauceItem> tryGetSauces(ItemStack stack) {
+        ListTag listTag = tryGetSaucesTag(stack);
+        if (listTag == null) return List.of();
 
-        return ResourceLocation.tryParse(location);
-    }
+        List<SauceItem> sauces = new ArrayList<>();
+        for (int i = 0; i < listTag.size(); i++) {
+            String location = listTag.getString(i);
+            ResourceLocation resourceLocation = ResourceLocation.tryParse(location);
+            if (resourceLocation == null) return List.of();
 
-    public static SauceItem tryGetSauce(ItemStack stack) {
-        ResourceLocation resourceLocation = tryGetSauceLocation(stack);
-        if (resourceLocation == null) return null;
+            Item item = BuiltInRegistries.ITEM.get(resourceLocation);
+            if (!(item instanceof SauceItem sauce)) return List.of();
 
-        Item item = BuiltInRegistries.ITEM.get(resourceLocation);
-        if (!(item instanceof SauceItem sauce)) return null;
+            sauces.add(sauce);
+        }
 
-        return sauce;
+        return sauces;
     }
 }

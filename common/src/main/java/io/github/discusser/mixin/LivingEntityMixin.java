@@ -14,19 +14,17 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.List;
+
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
     @Shadow public abstract boolean addEffect(MobEffectInstance mobEffectInstance);
-
-    @Shadow public abstract boolean addEffect(MobEffectInstance mobEffectInstance, @Nullable Entity entity);
 
     @Inject(method = "eat", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lnet/minecraft/world/entity/LivingEntity;addEatEffect(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;)V"))
     private void eat(Level level, ItemStack itemStack, CallbackInfoReturnable<ItemStack> cir) {
         if (level.isClientSide) return;
 
-        SauceItem sauce = PowerfulSaucesUtil.tryGetSauce(itemStack);
-        if (sauce != null) {
-            sauce.effects.forEach(effect -> this.addEffect(new MobEffectInstance(effect)));
-        }
+        List<SauceItem> sauces = PowerfulSaucesUtil.tryGetSauces(itemStack);
+        sauces.forEach(sauce -> sauce.effects.forEach(effect -> this.addEffect(new MobEffectInstance(effect))));
     }
 }
