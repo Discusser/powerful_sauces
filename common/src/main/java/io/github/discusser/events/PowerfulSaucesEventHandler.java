@@ -1,8 +1,10 @@
 package io.github.discusser.events;
 
 import dev.architectury.event.events.client.ClientTooltipEvent;
+import dev.architectury.event.events.common.*;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrarManager;
+import io.github.discusser.PowerfulSaucesUtil;
 import io.github.discusser.objects.PowerfulSaucesItems;
 import io.github.discusser.objects.items.SauceItem;
 import net.minecraft.ChatFormatting;
@@ -25,24 +27,11 @@ public class PowerfulSaucesEventHandler {
         ClientTooltipEvent.ITEM.register(PowerfulSaucesEventHandler::clientTooltipItem);
     }
 
+
     private static void clientTooltipItem(ItemStack stack, List<Component> lines, TooltipFlag flag) {
-        if (stack.getTag() != null) {
-            String location = stack.getTag().getString(MOD_ID + ":sauce");
-            if (location.isEmpty())
-                return;
+        SauceItem sauce = PowerfulSaucesUtil.tryGetSauce(stack);
 
-            ResourceLocation resourceLocation = ResourceLocation.tryParse(location);
-            if (resourceLocation == null) {
-                LOGGER.debug("Tried to unsuccessfully parse resource location from '" + location + "' found in tag of item '" + stack + "'");
-                return;
-            }
-
-            Item item = BuiltInRegistries.ITEM.get(resourceLocation);
-            if (!(item instanceof SauceItem sauce)) {
-                LOGGER.debug("An item that is not an instance of SauceItem was found in the '" + MOD_ID + ":sauce' tag");
-                return;
-            }
-
+        if (sauce != null) {
             MutableComponent sauceName = (MutableComponent) sauce.getName(new ItemStack(sauce));
             lines.add(Component.translatable("text.powerful_sauces.sauced_with", sauceName.withStyle(sauce.getStyle())).withStyle(ChatFormatting.GRAY));
         }
