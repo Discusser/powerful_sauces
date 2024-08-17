@@ -8,6 +8,7 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -19,66 +20,66 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static io.github.discusser.PowerfulSauces.LOGGER;
 import static io.github.discusser.PowerfulSauces.MOD_ID;
 
-public record SaucingRecipe(ResourceLocation id, ItemStack sauce) implements CraftingRecipe {
+public record SaucingRecipe(ResourceLocation id) implements CraftingRecipe {
     @Override
     public @NotNull CraftingBookCategory category() {
         return CraftingBookCategory.MISC;
     }
 
-    public boolean isValidFood(ItemStack stack) {
+    public boolean isValidFood(ItemStack sauceInContainer, ItemStack stack) {
         return stack.getItem().getFoodProperties() != null &&
                 !(stack.getItem() instanceof SauceItem) &&
-                PowerfulSaucesUtil.tryGetSauces(stack).stream().noneMatch(this.sauce::is);
+                PowerfulSaucesUtil.tryGetSauces(stack).stream().noneMatch(sauceInContainer::is);
+    }
+
+    public List<ItemStack> getSauceItems(CraftingContainer container) {
+        return container.getItems().stream()
+                .filter(stack -> stack.getItem() instanceof SauceItem)
+                .toList();
+    }
+
+    public List<ItemStack> getFoodItems(CraftingContainer container, ItemStack sauceItem) {
+        return container.getItems().stream()
+                .filter(stack -> isValidFood(sauceItem, stack))
+                .toList();
     }
 
     @Override
     public boolean matches(CraftingContainer container, Level level) {
-        int sauceCount = 0;
-        int foodCount = 0;
+        List<ItemStack> sauces = this.getSauceItems(container);
+        if (sauces.size() != 1)
+            return false;
 
-        for (ItemStack stack : container.getItems()) {
-            if (stack.is(sauce.getItem()))
-                sauceCount += 1;
-            if (isValidFood(stack))
-                foodCount += 1;
-        }
-
-        return sauceCount == 1 && foodCount == 1;
+        List<ItemStack> foods = this.getFoodItems(container, sauces.get(0));
+        return foods.size() == 1;
     }
 
     @Override
     public @NotNull ItemStack assemble(CraftingContainer container, RegistryAccess registryAccess) {
-        Optional<ItemStack> optional = container.getItems().stream().filter(this::isValidFood).findFirst();
-        if (optional.isPresent()) {
-            ResourceLocation sauceName = this.sauce.getItem().arch$registryName();
-            if (sauceName == null) {
-                LOGGER.error("Could not get registry name for sauce '" + this.sauce + "'");
-                return ItemStack.EMPTY;
-            }
+        ItemStack sauce = this.getSauceItems(container).get(0);
+        ItemStack food = this.getFoodItems(container, sauce).get(0);
 
-            ItemStack foodInput = optional.get();
-            ItemStack copy = foodInput.copyWithCount(1);
-
-            CompoundTag tag = copy.getOrCreateTag();
-            ListTag listTag = tag.getList(MOD_ID + ":sauces", CompoundTag.TAG_STRING);
-            listTag.add(listTag.size(), StringTag.valueOf(sauceName.toString()));
-            tag.put(MOD_ID + ":sauces", listTag);
-
-            copy.setTag(tag);
-            return copy;
-        } else {
-            LOGGER.error("Expected food item to be present when assembling SaucingRecipe");
+        ResourceLocation sauceName = sauce.getItem().arch$registryName();
+        if (sauceName == null) {
+            LOGGER.error("Could not get registry name for sauce '" + sauce + "'");
+            return ItemStack.EMPTY;
         }
 
-        return ItemStack.EMPTY;
+        ItemStack copy = food.copyWithCount(1);
+
+        CompoundTag tag = copy.getOrCreateTag();
+        ListTag listTag = tag.getList(MOD_ID + ":sauces", CompoundTag.TAG_STRING);
+        listTag.add(listTag.size(), StringTag.valueOf(sauceName.toString()));
+        listTag.sort(Comparator.comparing(Tag::getAsString));
+        tag.put(MOD_ID + ":sauces", listTag);
+
+        copy.setTag(tag);
+        return copy;
     }
 
     @Override
@@ -105,20 +106,15 @@ public record SaucingRecipe(ResourceLocation id, ItemStack sauce) implements Cra
 
         @Override
         public @NotNull SaucingRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject) {
-            ItemStack sauce = new ItemStack(GsonHelper.getAsItem(jsonObject, "sauce"));
-
-            return new SaucingRecipe(resourceLocation, sauce);
+            return new SaucingRecipe(resourceLocation);
         }
 
         @Override
         public @NotNull SaucingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf) {
-            ItemStack sauce = friendlyByteBuf.readItem();
-            return new SaucingRecipe(resourceLocation, sauce);
+            return new SaucingRecipe(resourceLocation);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf friendlyByteBuf, SaucingRecipe recipe) {
-            friendlyByteBuf.writeItem(recipe.sauce());
-        }
+        public void toNetwork(FriendlyByteBuf friendlyByteBuf, SaucingRecipe recipe) {}
     }
 }

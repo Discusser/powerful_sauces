@@ -3,6 +3,7 @@ package io.github.discusser.mixin;
 import io.github.discusser.PowerfulSaucesUtil;
 import io.github.discusser.objects.items.SauceItem;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -26,5 +27,9 @@ public abstract class LivingEntityMixin {
 
         List<SauceItem> sauces = PowerfulSaucesUtil.tryGetSauces(itemStack);
         sauces.forEach(sauce -> sauce.effects.forEach(effect -> this.addEffect(new MobEffectInstance(effect))));
+
+        if (PowerfulSaucesUtil.shouldGiveHunger(sauces.size())) {
+            this.addEffect(PowerfulSaucesUtil.getHungerForSauces(sauces.size()));
+        }
     }
 }

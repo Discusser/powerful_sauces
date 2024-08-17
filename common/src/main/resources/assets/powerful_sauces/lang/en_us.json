@@ -2,5 +2,13 @@
   "group.powerful_sauces.sauces": "Sauces",
   "item.powerful_sauces.ketchup": "Ketchup",
   "item.powerful_sauces.mustard": "Mustard",
-  "text.powerful_sauces.sauced_with": "Sauced with: %1$s"
+  "item.powerful_sauces.mayonnaise": "Mayonnaise",
+  "item.powerful_sauces.barbecue": "Barbecue Sauce",
+  "item.powerful_sauces.worcestershire": "Worcestershire Sauce",
+  "item.powerful_sauces.mushroom": "Mushroom Sauce",
+  "item.powerful_sauces.chili": "Chili Sauce",
+  "item.powerful_sauces.mint": "Mint Sauce",
+  "text.powerful_sauces.effect_description": "Gives %1$s %2$s for %3$s seconds",
+  "text.powerful_sauces.sauce_overload_description": "Too many sauces!",
+  "text.powerful_sauces.sauced_with": "Sauced with: "
 }
