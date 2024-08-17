@@ -10,27 +10,33 @@ import static com.mojang.text2speech.Narrator.LOGGER;
 import static io.github.discusser.PowerfulSauces.MOD_ID;
 
 public class PowerfulSaucesUtil {
+    public static boolean isSauced(ItemStack stack) {
+        return tryGetSauceTag(stack) != null;
+    }
+
+    public static String tryGetSauceTag(ItemStack stack) {
+        if (stack.getTag() == null) return null;
+
+        String location = stack.getTag().getString(MOD_ID + ":sauce");
+        if (location.isEmpty()) return null;
+
+        return location;
+    }
+
+    public static ResourceLocation tryGetSauceLocation(ItemStack stack) {
+        String location = tryGetSauceTag(stack);
+        if (location == null) return null;
+
+        return ResourceLocation.tryParse(location);
+    }
+
     public static SauceItem tryGetSauce(ItemStack stack) {
-        if (stack.getTag() != null) {
-            String location = stack.getTag().getString(MOD_ID + ":sauce");
-            if (location.isEmpty())
-                return null;
+        ResourceLocation resourceLocation = tryGetSauceLocation(stack);
+        if (resourceLocation == null) return null;
 
-            ResourceLocation resourceLocation = ResourceLocation.tryParse(location);
-            if (resourceLocation == null) {
-                LOGGER.debug("Tried to unsuccessfully parse resource location from '" + location + "' found in tag of item '" + stack + "'");
-                return null;
-            }
+        Item item = BuiltInRegistries.ITEM.get(resourceLocation);
+        if (!(item instanceof SauceItem sauce)) return null;
 
-            Item item = BuiltInRegistries.ITEM.get(resourceLocation);
-            if (!(item instanceof SauceItem sauce)) {
-                LOGGER.debug("An item that is not an instance of SauceItem was found in the '" + MOD_ID + ":sauce' tag");
-                return null;
-            }
-
-            return sauce;
-        }
-
-        return null;
+        return sauce;
     }
 }

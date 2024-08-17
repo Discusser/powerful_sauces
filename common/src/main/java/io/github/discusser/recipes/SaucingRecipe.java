@@ -1,13 +1,16 @@
 package io.github.discusser.recipes;
 
 import com.google.gson.JsonObject;
+import io.github.discusser.PowerfulSaucesUtil;
 import io.github.discusser.objects.PowerfulSaucesSerializers;
+import io.github.discusser.objects.items.SauceItem;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CraftingRecipe;
@@ -15,12 +18,21 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Optional;
+
+import static io.github.discusser.PowerfulSauces.LOGGER;
 import static io.github.discusser.PowerfulSauces.MOD_ID;
 
-public record SaucingRecipe(ResourceLocation id, ItemStack sauce, ItemStack foodInput) implements CraftingRecipe {
+public record SaucingRecipe(ResourceLocation id, ItemStack sauce) implements CraftingRecipe {
     @Override
     public @NotNull CraftingBookCategory category() {
         return CraftingBookCategory.MISC;
+    }
+
+    public boolean isValidFood(ItemStack stack) {
+        return stack.getItem().getFoodProperties() != null &&
+                    !(stack.getItem() instanceof SauceItem) &&
+                    !(PowerfulSaucesUtil.isSauced(stack));
     }
 
     @Override
@@ -29,8 +41,10 @@ public record SaucingRecipe(ResourceLocation id, ItemStack sauce, ItemStack food
         int foodCount = 0;
 
         for (ItemStack stack : container.getItems()) {
-            if (stack.is(sauce.getItem())) sauceCount += 1;
-            if (stack.is(foodInput.getItem())) foodCount += 1;
+            if (stack.is(sauce.getItem()))
+                sauceCount += 1;
+            if (isValidFood(stack))
+                foodCount += 1;
         }
 
         return sauceCount == 1 && foodCount == 1;
@@ -38,7 +52,25 @@ public record SaucingRecipe(ResourceLocation id, ItemStack sauce, ItemStack food
 
     @Override
     public @NotNull ItemStack assemble(CraftingContainer container, RegistryAccess registryAccess) {
-        return this.getResultItem(registryAccess);
+        Optional<ItemStack> optional = container.getItems().stream().filter(this::isValidFood).findFirst();
+        if (optional.isPresent()) {
+            ResourceLocation sauceName = this.sauce.getItem().arch$registryName();
+            if (sauceName == null) {
+                LOGGER.error("Could not get registry name for sauce '" + this.sauce + "'");
+                return ItemStack.EMPTY;
+            }
+
+            ItemStack foodInput = optional.get();
+            ItemStack copy = foodInput.copyWithCount(1);
+            CompoundTag tag = copy.getOrCreateTag();
+            tag.putString(MOD_ID + ":sauce", sauceName.toString());
+            copy.setTag(tag);
+            return copy;
+        } else {
+            LOGGER.error("Expected food item to be present when assembling SaucingRecipe");
+        }
+
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -48,11 +80,7 @@ public record SaucingRecipe(ResourceLocation id, ItemStack sauce, ItemStack food
 
     @Override
     public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
-        ItemStack copy = this.foodInput.copy();
-        CompoundTag tag = copy.getOrCreateTag();
-        tag.putString(MOD_ID + ":sauce", this.sauce.getItem().arch$registryName().toString());
-        copy.setTag(tag);
-        return copy;
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -70,22 +98,19 @@ public record SaucingRecipe(ResourceLocation id, ItemStack sauce, ItemStack food
         @Override
         public @NotNull SaucingRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject) {
             ItemStack sauce = new ItemStack(GsonHelper.getAsItem(jsonObject, "sauce"));
-            ItemStack foodInput = new ItemStack(GsonHelper.getAsItem(jsonObject, "foodInput"));
 
-            return new SaucingRecipe(resourceLocation, sauce, foodInput);
+            return new SaucingRecipe(resourceLocation, sauce);
         }
 
         @Override
         public @NotNull SaucingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf) {
             ItemStack sauce = friendlyByteBuf.readItem();
-            ItemStack foodInput = friendlyByteBuf.readItem();
-            return new SaucingRecipe(resourceLocation, sauce, foodInput);
+            return new SaucingRecipe(resourceLocation, sauce);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf friendlyByteBuf, SaucingRecipe recipe) {
             friendlyByteBuf.writeItem(recipe.sauce());
-            friendlyByteBuf.writeItem(recipe.foodInput());
         }
     }
 }

@@ -19,11 +19,11 @@ public class PowerfulSaucesItems {
 
     public static final FoodProperties SAUCE_FOOD = new FoodProperties.Builder().nutrition(1).build();
 
-    public static final RegistrySupplier<Item> KETCHUP = registerSauce("ketchup", Set.of(
+    public static final RegistrySupplier<SauceItem> KETCHUP = registerSauce("ketchup", Set.of(
             new MobEffectInstance(MobEffects.REGENERATION, 200, 0)
     ), 0x850101);
 
-    public static RegistrySupplier<Item> registerSauce(String name, Set<MobEffectInstance> effects, int textColor) {
+    public static RegistrySupplier<SauceItem> registerSauce(String name, Set<MobEffectInstance> effects, int textColor) {
         return ITEMS.register(name, () -> new SauceItem(
                 new Item.Properties().food(SAUCE_FOOD).arch$tab(PowerfulSaucesTabs.SAUCES_TAB.get()),
                 effects,
