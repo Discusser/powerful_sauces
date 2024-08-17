@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "powerful_sauces",
+  "version": "${version}",
+  "name": "Powerful Sauces",
+  "description": "",
+  "authors": [
+    "Discusser"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+  "license": "MIT",
+  "icon": "assets/powerful_sauces/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.discusser.fabric.PowerfulSaucesFabric"
+    ],
+    "client": [
+      "io.github.discusser.fabric.client.PowerfulSaucesFabricClient"
+    ]
+  },
+  "mixins": [
+    "powerful_sauces.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.2",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "architectury": ">=9.2.14",
+    "fabric-api": "*"
+  }
+}
