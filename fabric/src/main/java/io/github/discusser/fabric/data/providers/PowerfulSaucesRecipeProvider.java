@@ -76,41 +76,40 @@ public class PowerfulSaucesRecipeProvider extends FabricRecipeProvider {
                 .requires(globalTag("mortar_and_pestles"))
                 .requires(globalTag("tomatoes")).save(consumer);
 
-        shapelessSauceBottleRecipe(PowerfulSaucesItems.KETCHUP.get())
+        shapelessSauceBottleRecipe(PowerfulSaucesItems.KETCHUP.get(), 2)
                 .requires(PowerfulSaucesItems.TOMATO_PASTE.get())
                 .requires(Items.SUGAR)
                 .requires(PowerfulSaucesItems.SPICE_MIX.get()).save(consumer);
-        shapelessSauceBottleRecipe(PowerfulSaucesItems.MUSTARD.get())
+        shapelessSauceBottleRecipe(PowerfulSaucesItems.MUSTARD.get(), 2)
                 .requires(globalTag("water_bottles"))
                 .requires(globalTag("seeds/mustard"))
                 .requires(globalTag("lemons"))
                 .requires(globalTag("salt"))
                 .requires(PowerfulSaucesItems.SPICE_MIX.get()).save(consumer);
-        shapelessSauceBottleRecipe(PowerfulSaucesItems.MAYONNAISE.get())
+        shapelessSauceBottleRecipe(PowerfulSaucesItems.MAYONNAISE.get(), 2)
                 .requires(globalTag("olive_oils"))
                 .requires(Items.EGG)
                 .requires(PowerfulSaucesItems.SPICE_MIX.get())
                 .requires(PowerfulSaucesItems.VINEGAR.get()).save(consumer);
-        shapelessSauceBottleRecipe(PowerfulSaucesItems.BARBECUE.get())
+        shapelessSauceBottleRecipe(PowerfulSaucesItems.BARBECUE.get(), 2)
                 .requires(PowerfulSaucesItems.KETCHUP.get())
                 .requires(PowerfulSaucesItems.BROWN_SUGAR.get())
                 .requires(PowerfulSaucesItems.VINEGAR.get())
-                .requires(PowerfulSaucesItems.SPICE_MIX.get())
-                .requires(globalTag("molasses")).save(consumer);
-        shapelessSauceBottleRecipe(PowerfulSaucesItems.WORCESTERSHIRE.get())
+                .requires(PowerfulSaucesItems.SPICE_MIX.get()).save(consumer);
+        shapelessSauceBottleRecipe(PowerfulSaucesItems.WORCESTERSHIRE.get(), 2)
                 .requires(PowerfulSaucesItems.VINEGAR.get())
                 .requires(PowerfulSaucesItems.BROWN_SUGAR.get())
                 .requires(globalTag("salt"))
                 .requires(globalTag("anchovies"))
                 .requires(PowerfulSaucesItems.SPICE_MIX.get()).save(consumer);
-        shapelessSauceBottleRecipe(PowerfulSaucesItems.MUSHROOM.get())
+        shapelessSauceBottleRecipe(PowerfulSaucesItems.MUSHROOM.get(), 2)
                 .requires(Ingredient.of(Items.BROWN_MUSHROOM, Items.RED_MUSHROOM))
                 .requires(globalTag("cheeses"))
                 .requires(globalTag("milks"))
                 .requires(globalTag("olive_oils"))
                 .requires(globalTag("butter"))
                 .requires(PowerfulSaucesItems.SPICE_MIX.get()).save(consumer);
-        shapelessSauceBottleRecipe(PowerfulSaucesItems.CHILI.get(), 2)
+        shapelessSauceBottleRecipe(PowerfulSaucesItems.CHILI.get(), 3)
                 .requires(PowerfulSaucesItems.TOMATO_PASTE.get())
                 .requires(PowerfulSaucesItems.SPICE_MIX.get())
                 .requires(PowerfulSaucesItems.VINEGAR.get())

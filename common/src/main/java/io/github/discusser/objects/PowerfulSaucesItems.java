@@ -21,6 +21,7 @@ import static io.github.discusser.PowerfulSauces.MOD_ID;
 public class PowerfulSaucesItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registries.ITEM);
     public static final List<RegistrySupplier<SauceItem>> SAUCE_BOTTLES = new ArrayList<>();
+    public static final List<RegistrySupplier<Item>> INGREDIENTS = new ArrayList<>();
 
     public static final FoodProperties SAUCE_FOOD = new FoodProperties.Builder().nutrition(1).build();
 
@@ -55,17 +56,10 @@ public class PowerfulSaucesItems {
     public static final RegistrySupplier<Item> SAUCE_BOTTLE = ITEMS.register("sauce_bottle",
             () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
 
-    public static final RegistrySupplier<Item> SPICE_MIX = ITEMS.register("spice_mix",
-            () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
-
-    public static final RegistrySupplier<Item> VINEGAR = ITEMS.register("vinegar",
-            () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
-
-    public static final RegistrySupplier<Item> BROWN_SUGAR = ITEMS.register("brown_sugar",
-            () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
-
-    public static final RegistrySupplier<Item> TOMATO_PASTE = ITEMS.register("tomato_paste",
-            () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
+    public static final RegistrySupplier<Item> SPICE_MIX = registerIngredient("spice_mix");
+    public static final RegistrySupplier<Item> VINEGAR = registerIngredient("vinegar");
+    public static final RegistrySupplier<Item> BROWN_SUGAR = registerIngredient("brown_sugar");
+    public static final RegistrySupplier<Item> TOMATO_PASTE = registerIngredient("tomato_paste");
 
     public static RegistrySupplier<SauceItem> registerSauceBottle(String name, Set<MobEffectInstance> effects, int textColor) {
         RegistrySupplier<SauceItem> item = registerSauce(name, effects, textColor);
@@ -79,5 +73,12 @@ public class PowerfulSaucesItems {
                 effects,
                 TextColor.fromRgb(textColor)
         ));
+    }
+
+    public static RegistrySupplier<Item> registerIngredient(String name) {
+        RegistrySupplier<Item> item = ITEMS.register(name,
+                () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
+        INGREDIENTS.add(item);
+        return item;
     }
 }
