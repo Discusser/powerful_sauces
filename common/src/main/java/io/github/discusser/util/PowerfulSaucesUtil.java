@@ -1,5 +1,6 @@
 package io.github.discusser.util;
 
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import io.github.discusser.objects.items.SauceItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -20,11 +21,6 @@ import java.util.List;
 import static io.github.discusser.PowerfulSauces.MOD_ID;
 
 public class PowerfulSaucesUtil {
-    public static boolean isSauced(ItemStack stack) {
-        ListTag tag = tryGetSaucesTag(stack);
-        return tag != null && !tag.isEmpty();
-    }
-
     public static ListTag tryGetSaucesTag(ItemStack stack) {
         if (stack.getTag() == null)
             return null;
@@ -83,5 +79,13 @@ public class PowerfulSaucesUtil {
 
     public static boolean shouldGiveHunger(int sauceCount) {
         return sauceCount > 3;
+    }
+
+    public static ResourceLocation globalLocForge(String name) {
+        return new ResourceLocation("forge", name);
+    }
+
+    public static ResourceLocation globalLocFabric(String name) {
+        return new ResourceLocation("c", name);
     }
 }

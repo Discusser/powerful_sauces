@@ -7,7 +7,12 @@
   "item.powerful_sauces.worcestershire": "Worcestershire Sauce",
   "item.powerful_sauces.mushroom": "Mushroom Sauce",
   "item.powerful_sauces.chili": "Chili Sauce",
-  "item.powerful_sauces.mint": "Mint Sauce",
+  "item.powerful_sauces.sauce_bottle": "Sauce Bottle",
+  "item.powerful_sauces.augmented_sauce_bottle": "Augmented Sauce Bottle",
+  "item.powerful_sauces.spice_mix": "Spice Mix",
+  "item.powerful_sauces.vinegar": "Vinegar",
+  "item.powerful_sauces.brown_sugar": "Brown Sugar",
+  "item.powerful_sauces.tomato_paste": "Tomato Paste",
   "text.powerful_sauces.effect_description": "Gives %1$s %2$s for %3$s seconds",
   "text.powerful_sauces.sauce_overload_description": "Too many sauces!",
   "text.powerful_sauces.sauced_with": "Sauced with: "

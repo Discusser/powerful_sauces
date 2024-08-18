@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "powerful_sauces:augmented_sauce_bottle"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "powerful_sauces:has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:glass_pane"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "powerful_sauces:has_item",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "powerful_sauces:augmented_sauce_bottle"
+    ]
+  },
+  "sends_telemetry_event": false
+}

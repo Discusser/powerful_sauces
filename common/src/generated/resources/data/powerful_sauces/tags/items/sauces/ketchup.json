@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:sauces/ketchup",
+      "required": false
+    },
+    {
+      "id": "#forge:sauces/ketchup",
+      "required": false
+    }
+  ]
+}

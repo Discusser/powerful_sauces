@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:sauces/mushroom",
+      "required": false
+    },
+    {
+      "id": "#forge:sauces/mushroom",
+      "required": false
+    }
+  ]
+}

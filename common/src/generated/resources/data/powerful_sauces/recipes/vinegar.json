@@ -6,7 +6,10 @@
       "tag": "c:cooking_pots"
     },
     {
-      "tag": "c:wines"
+      "tag": "c:water_bottles"
+    },
+    {
+      "item": "minecraft:sugar"
     },
     {
       "tag": "c:juices"

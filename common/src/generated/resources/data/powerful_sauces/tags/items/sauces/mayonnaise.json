@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:sauces/mayonnaise",
+      "required": false
+    },
+    {
+      "id": "#forge:sauces/mayonnaise",
+      "required": false
+    }
+  ]
+}

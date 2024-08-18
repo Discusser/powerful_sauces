@@ -9,8 +9,9 @@ version = "${version}"
 displayName = "Powerful Sauces"
 authors = "Discusser"
 description = '''
+Adds sauces that, when applied on foods, can give you great or bad effects
 '''
-#logoFile = ""
+logoFile = "assets/powerful_sauces/icon.png"
 
 [[dependencies.powerful_sauces]]
 modId = "forge"

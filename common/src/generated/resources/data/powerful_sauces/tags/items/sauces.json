@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:sauces",
+      "required": false
+    },
+    {
+      "id": "#forge:sauces",
+      "required": false
+    }
+  ]
+}

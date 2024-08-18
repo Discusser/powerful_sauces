@@ -3,7 +3,7 @@
   "id": "powerful_sauces",
   "version": "${version}",
   "name": "Powerful Sauces",
-  "description": "",
+  "description": "Adds sauces that, when applied on foods, can give you great or bad effects",
   "authors": [
     "Discusser"
   ],

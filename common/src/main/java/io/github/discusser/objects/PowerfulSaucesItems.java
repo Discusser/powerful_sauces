@@ -2,8 +2,8 @@ package io.github.discusser.objects;
 
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
+import io.github.discusser.objects.items.AugmentedItem;
 import io.github.discusser.objects.items.SauceItem;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -55,6 +55,8 @@ public class PowerfulSaucesItems {
 
     public static final RegistrySupplier<Item> SAUCE_BOTTLE = ITEMS.register("sauce_bottle",
             () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
+    public static final RegistrySupplier<Item> AUGMENTED_SAUCE_BOTTLE = ITEMS.register("augmented_sauce_bottle",
+            () -> new AugmentedItem(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
 
     public static final RegistrySupplier<Item> SPICE_MIX = registerIngredient("spice_mix");
     public static final RegistrySupplier<Item> VINEGAR = registerIngredient("vinegar");

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:sauces/worcestershire",
+      "required": false
+    },
+    {
+      "id": "#forge:sauces/worcestershire",
+      "required": false
+    }
+  ]
+}
