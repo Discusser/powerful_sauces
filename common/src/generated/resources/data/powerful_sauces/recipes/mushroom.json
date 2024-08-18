@@ -14,13 +14,13 @@
       }
     ],
     {
-      "tag": "c:cheeses"
+      "tag": "${dependent}:cheeses"
     },
     {
-      "tag": "c:milks"
+      "tag": "${dependent}:milks"
     },
     {
-      "tag": "c:olive_oils"
+      "tag": "${dependent}:olive_oils"
     },
     {
       "item": "powerful_sauces:spice_mix"

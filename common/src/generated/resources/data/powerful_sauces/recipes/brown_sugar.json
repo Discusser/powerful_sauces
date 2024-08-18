@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "c:molasses"
+      "tag": "${dependent}:molasses"
     },
     {
       "item": "minecraft:sugar"

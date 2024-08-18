@@ -1,13 +1,9 @@
 package io.github.discusser.fabric.data.providers;
 
 import com.epherical.croptopia.register.Content;
-import dev.architectury.registry.registries.RegistrySupplier;
-import io.github.discusser.PowerfulSauces;
 import io.github.discusser.objects.PowerfulSaucesItems;
-import io.github.discusser.objects.PowerfulSaucesTags;
 import io.github.discusser.objects.SauceBottle;
-import io.github.discusser.objects.items.AugmentedSauceItem;
-import io.github.discusser.objects.items.SauceItem;
+import io.github.discusser.util.PowerfulSaucesUtil;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
@@ -47,9 +43,7 @@ public class PowerfulSaucesRecipeProvider extends FabricRecipeProvider {
     }
 
     public TagKey<Item> globalTag(String name) {
-//        return TagKey.create(Registries.ITEM, PowerfulSaucesUtil.globalLoc(name));
-        // TODO: MAKE TAGS WORK ON BOTH PLATFORMS
-        return TagKey.create(Registries.ITEM, new ResourceLocation("c", name));
+        return TagKey.create(Registries.ITEM, PowerfulSaucesUtil.globalLoc(name));
     }
 
     public void buildIngredientRecipes(Consumer<FinishedRecipe> consumer) {

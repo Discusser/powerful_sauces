@@ -14,6 +14,7 @@
   "license": "MIT",
   "icon": "assets/powerful_sauces/icon.png",
   "environment": "*",
+  "accessWidener": "powerful_sauces.accesswidener",
   "entrypoints": {
     "main": [
       "io.github.discusser.fabric.PowerfulSaucesFabric"

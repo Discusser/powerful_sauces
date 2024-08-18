@@ -27,6 +27,7 @@ configurations {
 
 loom {
     Project common = project(":common")
+    accessWidenerPath = file("src/main/resources/powerful_sauces.accesswidener")
 
     runs {
         datagen {
@@ -61,17 +62,70 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs += [
+                    "src/generated/resources"
+            ]
+        }
+    }
+}
+
 processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
     inputs.property 'version', project.version
 
     filesMatching('fabric.mod.json') {
         expand version: project.version
     }
+
+    println("Do thing")
+    println(project(":common").file("src/generated/resources"))
+    from(project(":common").file("src/generated/resources")) {
+        include('**/data/**')
+        expand "dependent": "c"
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
+
+    from(project(":common").file("src/generated/resources")) {
+        include('**/dependents/**')
+        into("data/c")
+        expand "dependent": "c"
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
 }
+
+//tasks.withType(JavaCompile) {
+//    options.encoding = "UTF-8"
+//    source(sourceSets.main.allSource)
+//    doLast {
+//        copy {
+//            from "${buildDir}/resources/main/dependents/platform"
+//            include "**/**/*.json"
+//            expand "dependent": "c"
+//            into "${buildDir}/resources/main/data/c/"
+//        }
+//    }
+//}
+
+//tasks.withType(JavaCompile) {
+//    options.encoding = "UTF-8"
+//    source(sourceSets.main.allSource)
+//    doLast {
+//        copy {
+//            from "${buildDir}/resources/main/dependents/platform"
+//            include "**/**/*.json"
+//            expand "dependent": "c"
+//            into "${buildDir}/resources/main/data/c/"
+//        }
+//    }
+//}
 
 shadowJar {
     configurations = [project.configurations.shadowBundle]
     archiveClassifier = 'dev-shadow'
+    relocate 'dependents/platform', 'data/c'
 }
 
 remapJar {

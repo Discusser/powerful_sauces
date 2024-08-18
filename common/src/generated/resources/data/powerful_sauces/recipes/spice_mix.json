@@ -3,16 +3,16 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "c:onions"
+      "tag": "${dependent}:onions"
     },
     {
-      "tag": "c:garlic"
+      "tag": "${dependent}:garlic"
     },
     {
-      "tag": "c:mustard"
+      "tag": "${dependent}:mustard"
     },
     {
-      "tag": "c:celery"
+      "tag": "${dependent}:celery"
     }
   ],
   "result": {

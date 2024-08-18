@@ -3,7 +3,6 @@ package io.github.discusser.fabric.data.providers;
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.discusser.objects.PowerfulSaucesItems;
 import io.github.discusser.objects.SauceBottle;
-import io.github.discusser.objects.items.SauceItem;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.models.BlockModelGenerators;

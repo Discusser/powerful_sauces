@@ -1,4 +1,4 @@
-// 1.20.1	2024-08-18T15:33:49.704014344	Powerful Sauces/Model Definitions
+// 1.20.1	2024-08-18T18:15:10.925657589	Powerful Sauces/Model Definitions
 6a73b3eea3535f4f767a8fbc058d83e9379f6720 assets/powerful_sauces/models/item/spice_mix.json
 7310c0fc5d6ba5a817ae69a2550cddb9b1cd7882 assets/powerful_sauces/models/item/mustard.json
 27fe6ee707971fb353fa8fa529d127f5afe2166b assets/powerful_sauces/models/item/brown_sugar.json
@@ -6,8 +6,8 @@
 7310c0fc5d6ba5a817ae69a2550cddb9b1cd7882 assets/powerful_sauces/models/item/mushroom.json
 1bdb31e30693cd9abdc108f77863e40824dceae4 assets/powerful_sauces/models/item/vinegar.json
 7310c0fc5d6ba5a817ae69a2550cddb9b1cd7882 assets/powerful_sauces/models/item/worcestershire.json
-7310c0fc5d6ba5a817ae69a2550cddb9b1cd7882 assets/powerful_sauces/models/item/augmented_barbecue.json
 7310c0fc5d6ba5a817ae69a2550cddb9b1cd7882 assets/powerful_sauces/models/item/augmented_mustard.json
+7310c0fc5d6ba5a817ae69a2550cddb9b1cd7882 assets/powerful_sauces/models/item/augmented_barbecue.json
 7310c0fc5d6ba5a817ae69a2550cddb9b1cd7882 assets/powerful_sauces/models/item/ketchup.json
 914023ab996070b64b73f7fe1bd0f150f12f6602 assets/powerful_sauces/models/item/template_sauce_bottle.json
 7310c0fc5d6ba5a817ae69a2550cddb9b1cd7882 assets/powerful_sauces/models/item/sauce_bottle.json

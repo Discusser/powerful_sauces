@@ -7,7 +7,9 @@
     "ItemColorsMixin"
   ],
   "mixins": [
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "accessor.ResourceLocationAccessor",
+    "accessor.TagProviderAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

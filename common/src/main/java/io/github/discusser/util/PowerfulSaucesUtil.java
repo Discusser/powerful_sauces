@@ -1,6 +1,6 @@
 package io.github.discusser.util;
 
-import io.github.discusser.objects.SauceBottle;
+import io.github.discusser.mixin.accessor.ResourceLocationAccessor;
 import io.github.discusser.objects.items.SauceItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -81,11 +81,10 @@ public class PowerfulSaucesUtil {
         return sauceCount > 3;
     }
 
-    public static ResourceLocation globalLocForge(String name) {
-        return new ResourceLocation("forge", name);
-    }
-
-    public static ResourceLocation globalLocFabric(String name) {
-        return new ResourceLocation("c", name);
+    public static ResourceLocation globalLoc(String name) {
+        ResourceLocation location = new ResourceLocation(MOD_ID, name);
+        // This gets expanded during processResources in build.gradle
+        ((ResourceLocationAccessor)location).setNamespace("${dependent}");
+        return location;
     }
 }

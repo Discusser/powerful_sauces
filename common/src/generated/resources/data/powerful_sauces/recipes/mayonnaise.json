@@ -6,7 +6,7 @@
       "item": "powerful_sauces:sauce_bottle"
     },
     {
-      "tag": "c:olive_oils"
+      "tag": "${dependent}:olive_oils"
     },
     {
       "item": "minecraft:egg"

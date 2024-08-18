@@ -12,10 +12,10 @@
       "item": "powerful_sauces:brown_sugar"
     },
     {
-      "tag": "c:salt"
+      "tag": "${dependent}:salt"
     },
     {
-      "tag": "c:anchovies"
+      "tag": "${dependent}:anchovies"
     },
     {
       "item": "powerful_sauces:spice_mix"

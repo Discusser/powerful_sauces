@@ -6,16 +6,16 @@
       "item": "powerful_sauces:sauce_bottle"
     },
     {
-      "tag": "c:water_bottles"
+      "tag": "${dependent}:water_bottles"
     },
     {
-      "tag": "c:seeds/mustard"
+      "tag": "${dependent}:seeds/mustard"
     },
     {
-      "tag": "c:lemons"
+      "tag": "${dependent}:lemons"
     },
     {
-      "tag": "c:salt"
+      "tag": "${dependent}:salt"
     },
     {
       "item": "powerful_sauces:spice_mix"

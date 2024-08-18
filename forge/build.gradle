@@ -13,14 +13,6 @@ architectury {
     forge()
 }
 
-def generatedResources = file("src/generated")
-
-sourceSets {
-    main {
-        resources.srcDir generatedResources
-    }
-}
-
 configurations {
     common {
         canBeResolved = true
@@ -56,17 +48,45 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs += [
+                    "src/generated/resources",
+                    project(":common").file("src/generated/resources")
+            ]
+        }
+    }
+}
+
 processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
     inputs.property 'version', project.version
 
     filesMatching('META-INF/mods.toml') {
         expand version: project.version
+    }
+
+    println("Do thing FORGE")
+    println(project(":common").file("src/generated/resources"))
+    from(project(":common").file("src/generated/resources")) {
+        include('**/data/**')
+        expand "dependent": "forge"
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
+
+    from(project(":common").file("src/generated/resources")) {
+        include('**/dependents/**')
+        into("data/forge")
+        expand "dependent": "forge"
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
 }
 
 shadowJar {
     configurations = [project.configurations.shadowBundle]
     archiveClassifier = 'dev-shadow'
+    relocate 'dependents/platform', 'data/forge'
 }
 
 remapJar {

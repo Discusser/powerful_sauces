@@ -15,7 +15,7 @@
       "item": "powerful_sauces:vinegar"
     },
     {
-      "tag": "c:water_bottles"
+      "tag": "${dependent}:water_bottles"
     },
     {
       "item": "powerful_sauces:brown_sugar"

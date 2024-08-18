@@ -17,3 +17,26 @@ sourceSets.main {
         srcDir("src/generated/resources")
     }
 }
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+    source(sourceSets.main.allSource)
+    doLast {
+//        def forgeBuild = project(":forge").file("build")
+//        copy {
+//            from "${forgeBuild}/resources/main/dependents/platform"
+//            include "**/**/*.json"
+//            expand "dependent": "forge"
+//            into "${forgeBuild}/resources/main/data/forge/"
+//        }
+//        def fabricBuild = project(":fabric").file("build")
+//        println("FABRIC BUILD")
+//        println(fabricBuild)
+//        copy {
+//            from "${fabricBuild}/resources/main/dependents/platform"
+//            include "**/**/*.json"
+//            expand "dependent": "c"
+//            into "${fabricBuild}/resources/main/data/c/"
+//        }
+    }
+}

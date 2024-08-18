@@ -3,10 +3,10 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "c:mortar_and_pestles"
+      "tag": "${dependent}:mortar_and_pestles"
     },
     {
-      "tag": "c:tomatoes"
+      "tag": "${dependent}:tomatoes"
     }
   ],
   "result": {
