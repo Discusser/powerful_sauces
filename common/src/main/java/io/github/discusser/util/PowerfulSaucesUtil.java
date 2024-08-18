@@ -1,6 +1,5 @@
 package io.github.discusser.util;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import io.github.discusser.objects.items.SauceItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;

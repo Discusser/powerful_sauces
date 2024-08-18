@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:sauces/augmented_barbecue",
+      "required": false
+    },
+    {
+      "id": "#forge:sauces/augmented_barbecue",
+      "required": false
+    }
+  ]
+}

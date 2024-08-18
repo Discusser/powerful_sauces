@@ -13,6 +13,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -50,6 +51,9 @@ public record SaucingRecipe(ResourceLocation id) implements CraftingRecipe {
 
     @Override
     public boolean matches(CraftingContainer container, Level level) {
+        if (container.getItems().stream().filter(itemStack -> !itemStack.is(Items.AIR)).toList().size() != 2)
+            return false;
+
         List<ItemStack> sauces = this.getSauceItems(container);
         if (sauces.size() != 1)
             return false;

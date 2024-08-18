@@ -2,7 +2,6 @@ package io.github.discusser.fabric.data.providers;
 
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.discusser.objects.PowerfulSaucesItems;
-import io.github.discusser.objects.PowerfulSaucesTags;
 import io.github.discusser.objects.items.SauceItem;
 import io.github.discusser.util.PowerfulSaucesUtil;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -38,7 +37,7 @@ public class PowerfulSaucesItemTagProvider extends FabricTagProvider.ItemTagProv
     @Override
     protected void addTags(HolderLookup.Provider arg) {
         globalTag("sauces", PowerfulSaucesItems.SAUCE_BOTTLES.stream().map(Supplier::get).toArray(Item[]::new));
-        for (RegistrySupplier<SauceItem> supplier : PowerfulSaucesItems.SAUCE_BOTTLES) {
+        for (RegistrySupplier<? extends SauceItem> supplier : PowerfulSaucesItems.SAUCE_BOTTLES) {
             globalTag("sauces/" + supplier.getId().getPath(), supplier.get());
         }
     }

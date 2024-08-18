@@ -1,9 +1,11 @@
 package io.github.discusser.fabric.data.providers;
 
 import com.epherical.croptopia.register.Content;
+import dev.architectury.registry.registries.RegistrySupplier;
+import io.github.discusser.PowerfulSauces;
 import io.github.discusser.objects.PowerfulSaucesItems;
 import io.github.discusser.objects.PowerfulSaucesTags;
-import io.github.discusser.util.PowerfulSaucesUtil;
+import io.github.discusser.objects.items.SauceItem;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
@@ -74,6 +76,8 @@ public class PowerfulSaucesRecipeProvider extends FabricRecipeProvider {
         shapelessUnlockedBy(PowerfulSaucesItems.TOMATO_PASTE.get(), 1, Content.TOMATO.asItem())
                 .requires(globalTag("mortar_and_pestles"))
                 .requires(globalTag("tomatoes")).save(consumer);
+//        shapelessUnlockedBy(PowerfulSaucesItems.STABILIZING_AGENT.get(), 1, )
+//                .requires()
     }
 
     public void buildSauceRecipes(Consumer<FinishedRecipe> consumer) {
@@ -119,7 +123,8 @@ public class PowerfulSaucesRecipeProvider extends FabricRecipeProvider {
     }
 
     public void buildAugmentedSauceRecipes(Consumer<FinishedRecipe> consumer) {
-
+        for (RegistrySupplier<? extends SauceItem> supplier : PowerfulSaucesItems.SAUCE_BOTTLES) {
+        }
     }
 
     public void buildRecipes(Consumer<FinishedRecipe> consumer) {

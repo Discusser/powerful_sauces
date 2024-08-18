@@ -47,7 +47,7 @@ public class PowerfulSaucesModelProvider extends FabricModelProvider {
                 itemModelGenerator.output
         );
 
-        for (RegistrySupplier<SauceItem> supplier : PowerfulSaucesItems.SAUCE_BOTTLES) {
+        for (RegistrySupplier<? extends SauceItem> supplier : PowerfulSaucesItems.SAUCE_BOTTLES) {
             generateSauceBottle(supplier.getId().getPath(), itemModelGenerator);
         }
         generateSauceBottle(PowerfulSaucesItems.SAUCE_BOTTLE.getId().getPath(), itemModelGenerator);
