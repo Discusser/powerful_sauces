@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "powerful_sauces:augmented_sauce_bottle"
+        "recipe": "powerful_sauces:augmented_barbecue"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "minecraft:glass_pane"
+              "powerful_sauces:barbecue"
             ]
           }
         ]
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "powerful_sauces:augmented_sauce_bottle"
+      "powerful_sauces:augmented_barbecue"
     ]
   },
   "sends_telemetry_event": false

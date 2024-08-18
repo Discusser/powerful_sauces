@@ -5,6 +5,8 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.discusser.PowerfulSauces;
 import io.github.discusser.objects.PowerfulSaucesItems;
 import io.github.discusser.objects.PowerfulSaucesTags;
+import io.github.discusser.objects.SauceBottle;
+import io.github.discusser.objects.items.AugmentedSauceItem;
 import io.github.discusser.objects.items.SauceItem;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -55,10 +57,6 @@ public class PowerfulSaucesRecipeProvider extends FabricRecipeProvider {
                 .pattern("GGG").define('G', Items.GLASS_PANE)
                 .pattern("G G").define('B', ItemTags.BUTTONS)
                 .pattern(" B ").save(consumer);
-        shapedUnlockedBy(PowerfulSaucesItems.AUGMENTED_SAUCE_BOTTLE.get(), 1, Items.GLASS_PANE)
-                .pattern(" S ").define('B', PowerfulSaucesItems.SAUCE_BOTTLE.get())
-                .pattern("SBS").define('S', PowerfulSaucesTags.SAUCES)
-                .pattern(" S ").save(consumer);
         shapelessUnlockedBy(PowerfulSaucesItems.SPICE_MIX.get(), 8,
                 Content.ONION.asItem(), Content.GARLIC.asItem(), Content.MUSTARD.asItem(), Content.CELERY.asItem())
                 .requires(globalTag("onions"))
@@ -76,8 +74,6 @@ public class PowerfulSaucesRecipeProvider extends FabricRecipeProvider {
         shapelessUnlockedBy(PowerfulSaucesItems.TOMATO_PASTE.get(), 1, Content.TOMATO.asItem())
                 .requires(globalTag("mortar_and_pestles"))
                 .requires(globalTag("tomatoes")).save(consumer);
-//        shapelessUnlockedBy(PowerfulSaucesItems.STABILIZING_AGENT.get(), 1, )
-//                .requires()
     }
 
     public void buildSauceRecipes(Consumer<FinishedRecipe> consumer) {
@@ -123,7 +119,11 @@ public class PowerfulSaucesRecipeProvider extends FabricRecipeProvider {
     }
 
     public void buildAugmentedSauceRecipes(Consumer<FinishedRecipe> consumer) {
-        for (RegistrySupplier<? extends SauceItem> supplier : PowerfulSaucesItems.SAUCE_BOTTLES) {
+        for (SauceBottle bottle : PowerfulSaucesItems.SAUCE_BOTTLES) {
+            shapedUnlockedBy(bottle.getAugmented(), 1, bottle.get())
+                    .pattern(" X ").define('X', Items.EXPERIENCE_BOTTLE)
+                    .pattern("XSX").define('S', bottle.get())
+                    .pattern(" X ").save(consumer);
         }
     }
 

@@ -13,10 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ItemColorsMixin {
     @Inject(method = "createDefault", at = @At(value = "TAIL"))
     private static void createDefault(BlockColors blockColors, CallbackInfoReturnable<ItemColors> cir, @Local ItemColors itemColors) {
-        PowerfulSaucesItems.SAUCE_BOTTLES.forEach(registrySupplier -> itemColors.register(
-                (itemStack, i) -> i == 0
-                        ? 0xcccccc
-                        : registrySupplier.get().textColor.getValue(), registrySupplier.get()
-        ));
+        PowerfulSaucesItems.SAUCE_BOTTLES.forEach(bottle -> {
+            itemColors.register((itemStack, i) -> i == 0 ? 0xcccccc : bottle.get().textColor.getValue(), bottle.get());
+            itemColors.register((itemStack, i) -> i == 0 ? 0xcccccc : bottle.getAugmented().textColor.getValue(), bottle.getAugmented());
+        });
     }
 }

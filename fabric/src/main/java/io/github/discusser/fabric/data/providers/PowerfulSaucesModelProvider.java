@@ -2,6 +2,7 @@ package io.github.discusser.fabric.data.providers;
 
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.discusser.objects.PowerfulSaucesItems;
+import io.github.discusser.objects.SauceBottle;
 import io.github.discusser.objects.items.SauceItem;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -47,11 +48,11 @@ public class PowerfulSaucesModelProvider extends FabricModelProvider {
                 itemModelGenerator.output
         );
 
-        for (RegistrySupplier<? extends SauceItem> supplier : PowerfulSaucesItems.SAUCE_BOTTLES) {
-            generateSauceBottle(supplier.getId().getPath(), itemModelGenerator);
+        for (SauceBottle bottle : PowerfulSaucesItems.SAUCE_BOTTLES) {
+            generateSauceBottle(bottle.sauce().getId().getPath(), itemModelGenerator);
+            generateSauceBottle(bottle.augmentedSauce().getId().getPath(), itemModelGenerator);
         }
         generateSauceBottle(PowerfulSaucesItems.SAUCE_BOTTLE.getId().getPath(), itemModelGenerator);
-        generateSauceBottle(PowerfulSaucesItems.AUGMENTED_SAUCE_BOTTLE.getId().getPath(), itemModelGenerator);
 
         for (RegistrySupplier<Item> supplier : PowerfulSaucesItems.INGREDIENTS) {
             itemModelGenerator.generateFlatItem(supplier.get(), ModelTemplates.FLAT_ITEM);

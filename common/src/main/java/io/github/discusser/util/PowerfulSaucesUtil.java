@@ -1,5 +1,6 @@
 package io.github.discusser.util;
 
+import io.github.discusser.objects.SauceBottle;
 import io.github.discusser.objects.items.SauceItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;

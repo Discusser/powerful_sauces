@@ -1,6 +1,8 @@
 package io.github.discusser.recipes;
 
 import com.google.gson.JsonObject;
+import io.github.discusser.objects.PowerfulSaucesItems;
+import io.github.discusser.objects.SauceBottle;
 import io.github.discusser.util.PowerfulSaucesUtil;
 import io.github.discusser.objects.PowerfulSaucesSerializers;
 import io.github.discusser.objects.items.SauceItem;
@@ -12,6 +14,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
@@ -31,10 +34,25 @@ public record SaucingRecipe(ResourceLocation id) implements CraftingRecipe {
         return CraftingBookCategory.MISC;
     }
 
-    public boolean isValidFood(ItemStack sauceInContainer, ItemStack stack) {
+    public SauceBottle bottleForSauce(ItemStack itemStack) {
+        Item item = itemStack.getItem();
+        try {
+            return PowerfulSaucesItems.SAUCE_BOTTLES.stream()
+                    .filter(sauceBottle -> sauceBottle.get().equals(item) || sauceBottle.getAugmented().equals(item))
+                    .toList()
+                    .get(0);
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.error("Could not find SauceBottle that contains '" + item.getDescriptionId() + "'");
+            throw e;
+        }
+    }
+
+    public boolean isValidFood(SauceBottle sauceInContainer, ItemStack stack) {
         return stack.getItem().getFoodProperties() != null &&
                 !(stack.getItem() instanceof SauceItem) &&
-                PowerfulSaucesUtil.tryGetSauces(stack).stream().noneMatch(sauceInContainer::is);
+                PowerfulSaucesUtil.tryGetSauces(stack).stream()
+                        .noneMatch(sauceItem -> sauceInContainer.get().equals(sauceItem) ||
+                                sauceInContainer.getAugmented().equals(sauceItem));
     }
 
     public List<ItemStack> getSauceItems(CraftingContainer container) {
@@ -44,8 +62,9 @@ public record SaucingRecipe(ResourceLocation id) implements CraftingRecipe {
     }
 
     public List<ItemStack> getFoodItems(CraftingContainer container, ItemStack sauceItem) {
+        SauceBottle bottle = bottleForSauce(sauceItem);
         return container.getItems().stream()
-                .filter(stack -> isValidFood(sauceItem, stack))
+                .filter(stack -> isValidFood(bottle, stack))
                 .toList();
     }
 
@@ -118,6 +137,7 @@ public record SaucingRecipe(ResourceLocation id) implements CraftingRecipe {
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf friendlyByteBuf, SaucingRecipe recipe) {}
+        public void toNetwork(FriendlyByteBuf friendlyByteBuf, SaucingRecipe recipe) {
+        }
     }
 }

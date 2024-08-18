@@ -2,7 +2,6 @@ package io.github.discusser.objects;
 
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
-import io.github.discusser.objects.items.AugmentedItem;
 import io.github.discusser.objects.items.AugmentedSauceItem;
 import io.github.discusser.objects.items.SauceItem;
 import net.minecraft.core.registries.Registries;
@@ -22,7 +21,7 @@ import static io.github.discusser.PowerfulSauces.MOD_ID;
 @SuppressWarnings("unused")
 public class PowerfulSaucesItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registries.ITEM);
-    public static final List<RegistrySupplier<? extends SauceItem>> SAUCE_BOTTLES = new ArrayList<>();
+    public static final List<SauceBottle> SAUCE_BOTTLES = new ArrayList<>();
     public static final List<RegistrySupplier<Item>> INGREDIENTS = new ArrayList<>();
 
     public static final FoodProperties SAUCE_FOOD = new FoodProperties.Builder().nutrition(1).build();
@@ -48,7 +47,7 @@ public class PowerfulSaucesItems {
     ), 0x572b26);
 
     public static final SauceBottle MUSHROOM = registerAugmentableSauceBottle("mushroom", Set.of(
-            new MobEffectInstance(MobEffects.HEAL, 10 * 20, 0)
+            new MobEffectInstance(MobEffects.HEAL, 1, 0)
     ), 0xd1c9b4);
 
     public static final SauceBottle CHILI = registerAugmentableSauceBottle("chili", Set.of(
@@ -57,10 +56,7 @@ public class PowerfulSaucesItems {
 
     public static final RegistrySupplier<Item> SAUCE_BOTTLE = ITEMS.register("sauce_bottle",
             () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
-    public static final RegistrySupplier<Item> AUGMENTED_SAUCE_BOTTLE = ITEMS.register("augmented_sauce_bottle",
-            () -> new AugmentedItem(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
 
-    public static final RegistrySupplier<Item> STABILIZING_AGENT = registerIngredient("stabilizing_agent");
     public static final RegistrySupplier<Item> SPICE_MIX = registerIngredient("spice_mix");
     public static final RegistrySupplier<Item> VINEGAR = registerIngredient("vinegar");
     public static final RegistrySupplier<Item> BROWN_SUGAR = registerIngredient("brown_sugar");
@@ -73,24 +69,18 @@ public class PowerfulSaucesItems {
                 effect.getAmplifier() + 1)
         ).collect(Collectors.toSet());
 
+        RegistrySupplier<SauceItem> sauceBottle = registerSauce(name, effects, textColor);
         RegistrySupplier<AugmentedSauceItem> augmentedSauceBottle = ITEMS.register("augmented_" + name,
                 () -> new AugmentedSauceItem(
                         new Item.Properties().food(SAUCE_FOOD).arch$tab(PowerfulSaucesTabs.SAUCES_TAB),
                         augmentedEffects,
                         TextColor.fromRgb(textColor)
                 ));
-        SAUCE_BOTTLES.add(augmentedSauceBottle);
 
-        return new SauceBottle(
-                registerSauceBottle(name, effects, textColor),
-                augmentedSauceBottle
-        );
-    }
+        SauceBottle bottle = new SauceBottle(sauceBottle, augmentedSauceBottle);
+        SAUCE_BOTTLES.add(bottle);
 
-    public static RegistrySupplier<SauceItem> registerSauceBottle(String name, Set<MobEffectInstance> effects, int textColor) {
-        RegistrySupplier<SauceItem> item = registerSauce(name, effects, textColor);
-        SAUCE_BOTTLES.add(item);
-        return item;
+        return bottle;
     }
 
     public static RegistrySupplier<SauceItem> registerSauce(String name, Set<MobEffectInstance> effects, int textColor) {

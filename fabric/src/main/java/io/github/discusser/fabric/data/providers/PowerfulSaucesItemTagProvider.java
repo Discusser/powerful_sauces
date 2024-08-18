@@ -2,6 +2,7 @@ package io.github.discusser.fabric.data.providers;
 
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.discusser.objects.PowerfulSaucesItems;
+import io.github.discusser.objects.SauceBottle;
 import io.github.discusser.objects.items.SauceItem;
 import io.github.discusser.util.PowerfulSaucesUtil;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -12,8 +13,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import static io.github.discusser.PowerfulSauces.MOD_ID;
 
@@ -36,9 +39,12 @@ public class PowerfulSaucesItemTagProvider extends FabricTagProvider.ItemTagProv
 
     @Override
     protected void addTags(HolderLookup.Provider arg) {
-        globalTag("sauces", PowerfulSaucesItems.SAUCE_BOTTLES.stream().map(Supplier::get).toArray(Item[]::new));
-        for (RegistrySupplier<? extends SauceItem> supplier : PowerfulSaucesItems.SAUCE_BOTTLES) {
-            globalTag("sauces/" + supplier.getId().getPath(), supplier.get());
+        globalTag("sauces", PowerfulSaucesItems.SAUCE_BOTTLES.stream()
+                .flatMap(sauceBottle -> Stream.of(sauceBottle.get(), sauceBottle.getAugmented()))
+                .toArray(Item[]::new));
+        for (SauceBottle bottle : PowerfulSaucesItems.SAUCE_BOTTLES) {
+            globalTag("sauces/" + bottle.sauce().getId().getPath(), bottle.sauce().get());
+            globalTag("sauces/" + bottle.augmentedSauce().getId().getPath(), bottle.augmentedSauce().get());
         }
     }
 }

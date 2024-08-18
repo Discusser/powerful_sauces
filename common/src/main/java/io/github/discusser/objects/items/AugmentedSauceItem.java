@@ -16,9 +16,4 @@ public class AugmentedSauceItem extends SauceItem {
     public boolean isFoil(ItemStack itemStack) {
         return true;
     }
-
-    @Override
-    public Style getStyle() {
-        return super.getStyle().withBold(true);
-    }
 }
