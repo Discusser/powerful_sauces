@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "minecraft:buttons"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "G G",
+    " B "
+  ],
+  "result": {
+    "count": 16,
+    "item": "powerful_sauces:sauce_bottle"
+  },
+  "show_notification": true
+}

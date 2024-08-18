@@ -1,4 +1,4 @@
-package io.github.discusser;
+package io.github.discusser.util;
 
 import io.github.discusser.objects.items.SauceItem;
 import net.minecraft.ChatFormatting;

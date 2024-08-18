@@ -1,7 +1,7 @@
 package io.github.discusser.recipes;
 
 import com.google.gson.JsonObject;
-import io.github.discusser.PowerfulSaucesUtil;
+import io.github.discusser.util.PowerfulSaucesUtil;
 import io.github.discusser.objects.PowerfulSaucesSerializers;
 import io.github.discusser.objects.items.SauceItem;
 import net.minecraft.core.RegistryAccess;
@@ -11,7 +11,6 @@ import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingBookCategory;

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "powerful_sauces:sauce_bottle"
+    },
+    {
+      "tag": "c:olive_oils"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "powerful_sauces:spice_mix"
+    },
+    {
+      "item": "powerful_sauces:vinegar"
+    }
+  ],
+  "result": {
+    "item": "powerful_sauces:mayonnaise"
+  }
+}

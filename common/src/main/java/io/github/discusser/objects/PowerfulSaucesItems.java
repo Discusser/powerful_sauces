@@ -52,9 +52,20 @@ public class PowerfulSaucesItems {
             new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20 * 20, 0)
     ), 0xbc4e40);
 
-    public static final RegistrySupplier<SauceItem> MINT = registerSauceBottle("mint", Set.of(
-            new MobEffectInstance(MobEffects.LEVITATION, 10 * 20, 0)
-    ), 0x3eb489);
+    public static final RegistrySupplier<Item> SAUCE_BOTTLE = ITEMS.register("sauce_bottle",
+            () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
+
+    public static final RegistrySupplier<Item> SPICE_MIX = ITEMS.register("spice_mix",
+            () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
+
+    public static final RegistrySupplier<Item> VINEGAR = ITEMS.register("vinegar",
+            () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
+
+    public static final RegistrySupplier<Item> BROWN_SUGAR = ITEMS.register("brown_sugar",
+            () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
+
+    public static final RegistrySupplier<Item> TOMATO_PASTE = ITEMS.register("tomato_paste",
+            () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
 
     public static RegistrySupplier<SauceItem> registerSauceBottle(String name, Set<MobEffectInstance> effects, int textColor) {
         RegistrySupplier<SauceItem> item = registerSauce(name, effects, textColor);

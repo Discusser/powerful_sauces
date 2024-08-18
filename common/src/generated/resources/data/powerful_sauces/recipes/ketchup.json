@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "powerful_sauces:sauce_bottle"
+    },
+    {
+      "item": "powerful_sauces:tomato_paste"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "powerful_sauces:spice_mix"
+    }
+  ],
+  "result": {
+    "item": "powerful_sauces:ketchup"
+  }
+}

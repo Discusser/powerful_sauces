@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "powerful_sauces:sauce_bottle"
+    },
+    {
+      "item": "powerful_sauces:tomato_paste"
+    },
+    {
+      "item": "powerful_sauces:spice_mix"
+    },
+    {
+      "item": "powerful_sauces:vinegar"
+    },
+    {
+      "tag": "c:water_bottles"
+    },
+    {
+      "item": "powerful_sauces:brown_sugar"
+    },
+    {
+      "item": "powerful_sauces:worcestershire"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "powerful_sauces:chili"
+  }
+}

@@ -1,7 +1,7 @@
 package io.github.discusser.events;
 
 import dev.architectury.event.events.client.ClientTooltipEvent;
-import io.github.discusser.PowerfulSaucesUtil;
+import io.github.discusser.util.PowerfulSaucesUtil;
 import io.github.discusser.objects.items.SauceItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -9,7 +9,6 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PowerfulSaucesEventHandler {

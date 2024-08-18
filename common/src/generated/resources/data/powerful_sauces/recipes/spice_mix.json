@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:onions"
+    },
+    {
+      "tag": "c:garlic"
+    },
+    {
+      "tag": "c:mustard"
+    },
+    {
+      "tag": "c:celery"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "powerful_sauces:spice_mix"
+  }
+}

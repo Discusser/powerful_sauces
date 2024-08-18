@@ -20,6 +20,9 @@
     ],
     "client": [
       "io.github.discusser.fabric.client.PowerfulSaucesFabricClient"
+    ],
+    "fabric-datagen": [
+      "io.github.discusser.fabric.data.PowerfulSaucesDataFabric"
     ]
   },
   "mixins": [

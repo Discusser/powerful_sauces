@@ -1,6 +1,6 @@
 package io.github.discusser.objects.items;
 
-import io.github.discusser.PowerfulSaucesUtil;
+import io.github.discusser.util.PowerfulSaucesUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;

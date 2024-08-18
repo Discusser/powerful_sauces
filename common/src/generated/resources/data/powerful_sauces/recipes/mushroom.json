@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "powerful_sauces:sauce_bottle"
+    },
+    [
+      {
+        "item": "minecraft:brown_mushroom"
+      },
+      {
+        "item": "minecraft:red_mushroom"
+      }
+    ],
+    {
+      "tag": "c:cheeses"
+    },
+    {
+      "tag": "c:milks"
+    },
+    {
+      "tag": "c:olive_oils"
+    },
+    {
+      "tag": "c:butter"
+    },
+    {
+      "item": "powerful_sauces:spice_mix"
+    }
+  ],
+  "result": {
+    "item": "powerful_sauces:mushroom"
+  }
+}
