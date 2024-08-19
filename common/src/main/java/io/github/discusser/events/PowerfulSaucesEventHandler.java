@@ -1,9 +1,15 @@
 package io.github.discusser.events;
 
 import dev.architectury.event.events.client.ClientTooltipEvent;
-import io.github.discusser.util.PowerfulSaucesUtil;
+import dev.architectury.event.events.common.LifecycleEvent;
+import io.github.discusser.objects.PowerfulSaucesItems;
 import io.github.discusser.objects.items.SauceItem;
+import io.github.discusser.util.PowerfulSaucesUtil;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.color.item.ItemColors;
+import net.minecraft.core.IdMapper;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.ItemStack;

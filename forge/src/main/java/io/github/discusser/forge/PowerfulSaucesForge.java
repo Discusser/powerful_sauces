@@ -1,6 +1,10 @@
 package io.github.discusser.forge;
 
 import dev.architectury.platform.forge.EventBuses;
+import io.github.discusser.objects.PowerfulSaucesItems;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 

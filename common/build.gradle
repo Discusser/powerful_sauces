@@ -2,6 +2,10 @@ architectury {
     common rootProject.enabled_platforms.split(',')
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/powerful_sauces.accesswidener")
+}
+
 dependencies {
     // We depend on Fabric Loader here to use the Fabric @Environment annotations,
     // which get remapped to the correct annotations on each platform.
@@ -18,25 +22,11 @@ sourceSets.main {
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = "UTF-8"
-    source(sourceSets.main.allSource)
+processResources {
     doLast {
-//        def forgeBuild = project(":forge").file("build")
-//        copy {
-//            from "${forgeBuild}/resources/main/dependents/platform"
-//            include "**/**/*.json"
-//            expand "dependent": "forge"
-//            into "${forgeBuild}/resources/main/data/forge/"
-//        }
-//        def fabricBuild = project(":fabric").file("build")
-//        println("FABRIC BUILD")
-//        println(fabricBuild)
-//        copy {
-//            from "${fabricBuild}/resources/main/dependents/platform"
-//            include "**/**/*.json"
-//            expand "dependent": "c"
-//            into "${fabricBuild}/resources/main/data/c/"
-//        }
+        delete fileTree("${buildDir}/resources/main/") {
+            include "data/**/*.json"
+            include "dependents/**/*.json"
+        }
     }
 }

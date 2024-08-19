@@ -53,7 +53,6 @@ sourceSets {
         resources {
             srcDirs += [
                     "src/generated/resources",
-                    project(":common").file("src/generated/resources")
             ]
         }
     }
@@ -67,19 +66,24 @@ processResources {
         expand version: project.version
     }
 
-    println("Do thing FORGE")
-    println(project(":common").file("src/generated/resources"))
     from(project(":common").file("src/generated/resources")) {
         include('**/data/**')
+        include('**/dependents/**')
         expand "dependent": "forge"
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
+}
 
-    from(project(":common").file("src/generated/resources")) {
-        include('**/dependents/**')
-        into("data/forge")
-        expand "dependent": "forge"
-        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+compileJava {
+    options.encoding = "UTF-8"
+    source(sourceSets.main.allSource)
+    doLast {
+        copy {
+            from "${buildDir}/resources/main/dependents/platform"
+            include "**/**/*.json"
+            expand "dependent": "forge"
+            into "${buildDir}/resources/main/data/forge/"
+        }
     }
 }
 

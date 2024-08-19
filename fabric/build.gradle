@@ -66,7 +66,7 @@ sourceSets {
     main {
         resources {
             srcDirs += [
-                    "src/generated/resources"
+                    "src/generated/resources",
             ]
         }
     }
@@ -80,47 +80,26 @@ processResources {
         expand version: project.version
     }
 
-    println("Do thing")
-    println(project(":common").file("src/generated/resources"))
     from(project(":common").file("src/generated/resources")) {
         include('**/data/**')
-        expand "dependent": "c"
-        duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    }
-
-    from(project(":common").file("src/generated/resources")) {
         include('**/dependents/**')
-        into("data/c")
         expand "dependent": "c"
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
 }
 
-//tasks.withType(JavaCompile) {
-//    options.encoding = "UTF-8"
-//    source(sourceSets.main.allSource)
-//    doLast {
-//        copy {
-//            from "${buildDir}/resources/main/dependents/platform"
-//            include "**/**/*.json"
-//            expand "dependent": "c"
-//            into "${buildDir}/resources/main/data/c/"
-//        }
-//    }
-//}
-
-//tasks.withType(JavaCompile) {
-//    options.encoding = "UTF-8"
-//    source(sourceSets.main.allSource)
-//    doLast {
-//        copy {
-//            from "${buildDir}/resources/main/dependents/platform"
-//            include "**/**/*.json"
-//            expand "dependent": "c"
-//            into "${buildDir}/resources/main/data/c/"
-//        }
-//    }
-//}
+compileJava {
+    options.encoding = "UTF-8"
+    source(sourceSets.main.allSource)
+    doLast {
+        copy {
+            from "${buildDir}/resources/main/dependents/platform"
+            include "**/**/*.json"
+            expand "dependent": "c"
+            into "${buildDir}/resources/main/data/c/"
+        }
+    }
+}
 
 shadowJar {
     configurations = [project.configurations.shadowBundle]
