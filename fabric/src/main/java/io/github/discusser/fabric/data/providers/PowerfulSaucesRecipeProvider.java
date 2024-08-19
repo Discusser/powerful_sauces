@@ -170,7 +170,7 @@ public class PowerfulSaucesRecipeProvider extends FabricRecipeProvider {
         public static final TagKey<Item> OLIVE_OIL = globalTag("olive_oils");
         public static final TagKey<Item> ONION = globalTag("onions");
         public static final TagKey<Item> PICKLE = globalTag("pickles");
-        public static final TagKey<Item> PEPPER = globalTag("peppers");
+        public static final TagKey<Item> PEPPER = globalTag("pepper");
         public static final TagKey<Item> SALT = globalTag("salts");
         public static final TagKey<Item> SEED_MUSTARD = globalTag("seeds/mustard");
         public static final TagKey<Item> SPICE_MIX = globalTag("spice_mixes");
