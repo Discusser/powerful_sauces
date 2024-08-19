@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "${dependent}:knives"
+    },
+    {
+      "item": "powerful_sauces:pickle"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "powerful_sauces:chopped_pickle"
+  }
+}

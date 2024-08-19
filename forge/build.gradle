@@ -72,11 +72,7 @@ processResources {
         expand "dependent": "forge"
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
-}
 
-compileJava {
-    options.encoding = "UTF-8"
-    source(sourceSets.main.allSource)
     doLast {
         copy {
             from "${buildDir}/resources/main/dependents/platform"
@@ -85,6 +81,11 @@ compileJava {
             into "${buildDir}/resources/main/data/forge/"
         }
     }
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+    source(sourceSets.main.allSource)
 }
 
 shadowJar {

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "${dependent}:water_bottles"
+    },
+    {
+      "item": "powerful_sauces:vinegar"
+    },
+    {
+      "item": "powerful_sauces:spice_mix"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "powerful_sauces:brine"
+  }
+}

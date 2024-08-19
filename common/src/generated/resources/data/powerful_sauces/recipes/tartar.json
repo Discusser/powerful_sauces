@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "powerful_sauces:sauce_bottle"
+    },
+    {
+      "item": "powerful_sauces:mayonnaise"
+    },
+    {
+      "item": "powerful_sauces:chopped_pickle"
+    },
+    {
+      "tag": "${dependent}:lemons"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "tag": "${dependent}:pepper"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "powerful_sauces:tartar"
+  }
+}

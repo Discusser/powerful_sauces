@@ -86,12 +86,10 @@ processResources {
         expand "dependent": "c"
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
-}
 
-compileJava {
-    options.encoding = "UTF-8"
-    source(sourceSets.main.allSource)
     doLast {
+        println(fileTree("${buildDir}/resources/main/dependents/platform").files.name)
+        println("Copying stuff now")
         copy {
             from "${buildDir}/resources/main/dependents/platform"
             include "**/**/*.json"
@@ -99,6 +97,11 @@ compileJava {
             into "${buildDir}/resources/main/data/c/"
         }
     }
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+    source(sourceSets.main.allSource)
 }
 
 shadowJar {

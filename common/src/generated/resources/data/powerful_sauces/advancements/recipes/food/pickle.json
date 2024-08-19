@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "powerful_sauces:spice_mix"
+        "recipe": "powerful_sauces:pickle"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:vegetables"
+            "tag": "${dependent}:cucumbers"
           }
         ]
       },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "powerful_sauces:spice_mix"
+      "powerful_sauces:pickle"
     ]
   },
   "sends_telemetry_event": false

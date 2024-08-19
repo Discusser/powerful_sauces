@@ -54,6 +54,10 @@ public class PowerfulSaucesItems {
             new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20 * 20, 0)
     ), 0xbc4e40);
 
+    public static final SauceBottle TARTAR = registerAugmentableSauceBottle("tartar", Set.of(
+            new MobEffectInstance(MobEffects.WATER_BREATHING, 30 * 20, 0)
+    ), 0xf3ede1);
+
     public static final RegistrySupplier<Item> SAUCE_BOTTLE = ITEMS.register("sauce_bottle",
             () -> new Item(new Item.Properties().arch$tab(PowerfulSaucesTabs.SAUCES_TAB)));
 
@@ -61,6 +65,9 @@ public class PowerfulSaucesItems {
     public static final RegistrySupplier<Item> VINEGAR = registerIngredient("vinegar");
     public static final RegistrySupplier<Item> BROWN_SUGAR = registerIngredient("brown_sugar");
     public static final RegistrySupplier<Item> TOMATO_PASTE = registerIngredient("tomato_paste");
+    public static final RegistrySupplier<Item> PICKLE = registerIngredient("pickle");
+    public static final RegistrySupplier<Item> CHOPPED_PICKLE = registerIngredient("chopped_pickle");
+    public static final RegistrySupplier<Item> BRINE = registerIngredient("brine");
 
     public static SauceBottle registerAugmentableSauceBottle(String name, Set<MobEffectInstance> effects, int textColor) {
         Set<MobEffectInstance> augmentedEffects = effects.stream().map(effect -> new MobEffectInstance(

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "${dependent}:cooking_pots"
+    },
+    {
+      "tag": "${dependent}:cucumbers"
+    },
+    {
+      "item": "powerful_sauces:brine"
+    },
+    {
+      "tag": "${dependent}:garlic"
+    }
+  ],
+  "result": {
+    "item": "powerful_sauces:pickle"
+  }
+}

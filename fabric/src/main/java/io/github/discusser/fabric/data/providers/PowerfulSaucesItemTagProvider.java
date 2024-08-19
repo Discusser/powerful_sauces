@@ -1,5 +1,6 @@
 package io.github.discusser.fabric.data.providers;
 
+import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.discusser.mixin.accessor.TagProviderAccessor;
 import io.github.discusser.objects.PowerfulSaucesItems;
 import io.github.discusser.objects.SauceBottle;
@@ -30,14 +31,41 @@ public class PowerfulSaucesItemTagProvider extends FabricTagProvider.ItemTagProv
         this.getOrCreateTagBuilder(TagKey.create(Registries.ITEM, PowerfulSaucesUtil.globalLoc(name))).add(item);
     }
 
+    // Handles most cases
+    public String plural(String name) {
+        if (name.endsWith("y")) {
+            name = name.substring(0, name.length() - 1);
+            return name + "ies";
+        } else if (name.endsWith("us")) {
+            name = name.substring(0, name.length() - 1);
+            return name + "i";
+        } else if (name.endsWith("knife") || name.endsWith("wife") || name.endsWith("life")) {
+            // These case are maybe pointless, but we might as well check for them
+            return name + "ve";
+        } else if (name.endsWith("e")) {
+            return name + "s";
+        } else if (name.endsWith("s") || name.endsWith("x") || name.endsWith("sh") || name.endsWith("ch") || name.endsWith("tomato") || name.endsWith("potato")) {
+            return name + "es";
+        } else {
+            return name + "s";
+        }
+    }
+
     @Override
     protected void addTags(HolderLookup.Provider arg) {
         globalTag("sauces", PowerfulSaucesItems.SAUCE_BOTTLES.stream()
-                .flatMap(sauceBottle -> Stream.of(sauceBottle.get(), sauceBottle.getAugmented()))
+                .map(SauceBottle::get)
+                .toArray(Item[]::new));
+        globalTag("augmented_sauces", PowerfulSaucesItems.SAUCE_BOTTLES.stream()
+                .map(SauceBottle::getAugmented)
                 .toArray(Item[]::new));
         for (SauceBottle bottle : PowerfulSaucesItems.SAUCE_BOTTLES) {
             globalTag("sauces/" + bottle.sauce().getId().getPath(), bottle.sauce().get());
-            globalTag("sauces/" + bottle.augmentedSauce().getId().getPath(), bottle.augmentedSauce().get());
+            globalTag("augmented_sauces/" + bottle.augmentedSauce().getId().getPath(), bottle.augmentedSauce().get());
+        }
+
+        for (RegistrySupplier<Item> item : PowerfulSaucesItems.INGREDIENTS) {
+            globalTag(plural(item.getId().getPath()), item.get());
         }
     }
 }

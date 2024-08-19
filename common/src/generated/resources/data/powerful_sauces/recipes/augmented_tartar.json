@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "powerful_sauces:tartar"
+    },
+    "X": {
+      "item": "minecraft:experience_bottle"
+    }
+  },
+  "pattern": [
+    " X ",
+    "XSX",
+    " X "
+  ],
+  "result": {
+    "item": "powerful_sauces:augmented_tartar"
+  },
+  "show_notification": true
+}
