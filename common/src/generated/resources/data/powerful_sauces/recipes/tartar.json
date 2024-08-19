@@ -18,7 +18,7 @@
       "item": "minecraft:sugar"
     },
     {
-      "tag": "${dependent}:peppers"
+      "tag": "${dependent}:pepper"
     }
   ],
   "result": {

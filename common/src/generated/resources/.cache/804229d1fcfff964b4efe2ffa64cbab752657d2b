@@ -1,4 +1,4 @@
-// 1.20.1	2024-08-19T16:58:45.784010346	Powerful Sauces/Recipes
+// 1.20.1	2024-08-19T17:15:30.411494013	Powerful Sauces/Recipes
 c28919948a2405741cc28b3907b1b9a0e2043aa3 data/powerful_sauces/recipes/ketchup.json
 ba5c47f54aae998168ec051d508ff02c7ce1c00d data/powerful_sauces/recipes/augmented_worcestershire.json
 edc03698c9b19332390b72dd3f46be6b20dc8e27 data/powerful_sauces/advancements/recipes/food/augmented_tartar.json
@@ -6,8 +6,8 @@ edc03698c9b19332390b72dd3f46be6b20dc8e27 data/powerful_sauces/advancements/recip
 83a58df2f6ee5f171a84018627e0fd0abaec6e5b data/powerful_sauces/recipes/augmented_chili.json
 5d331d1bdc811d09ef77f282e03cb323b58364df data/powerful_sauces/advancements/recipes/food/augmented_barbecue.json
 03b682ea4ed26a734f3b12e90d8a4845585adb86 data/powerful_sauces/advancements/recipes/food/chopped_pickle.json
-fa69e4c80697ffc6504ad33474d183cebc3b64b0 data/powerful_sauces/advancements/recipes/food/augmented_mustard.json
 a09dd19364e8ea60c6a27a33e5cc829cdaaa033d data/powerful_sauces/advancements/recipes/food/mustard.json
+fa69e4c80697ffc6504ad33474d183cebc3b64b0 data/powerful_sauces/advancements/recipes/food/augmented_mustard.json
 74b3a575b46b7a540ce05aae7351bc9bda8ba77b data/powerful_sauces/recipes/augmented_mustard.json
 86f932b13495df983cef0e575eec3de787c73284 data/powerful_sauces/advancements/recipes/food/augmented_chili.json
 58fe855fb32f1ac5307d355520b17db2cd3bdcff data/powerful_sauces/recipes/mayonnaise.json
@@ -20,7 +20,7 @@ a09dd19364e8ea60c6a27a33e5cc829cdaaa033d data/powerful_sauces/advancements/recip
 3ab80dcde3e83ed861e1d4aebc31721530e8c8fe data/powerful_sauces/recipes/augmented_mushroom.json
 914b5bed1d31477d1e38852d04ac911eeb95abdc data/powerful_sauces/recipes/worcestershire.json
 83ef8f908f446f5aa788c8f386499b8b46047069 data/powerful_sauces/advancements/recipes/food/augmented_ketchup.json
-c7e918b2f79f8e1c0ccbc00207a3b2a88d087c1e data/powerful_sauces/recipes/tartar.json
+a238884293ecc9b6116ffb24d606fc03a3830bc5 data/powerful_sauces/recipes/tartar.json
 c7d41d7ddff6755318258566fd5834ad512c8753 data/powerful_sauces/recipes/spice_mix.json
 2444eecd1c809128ba930a78b3404fd4fc2559b9 data/powerful_sauces/recipes/augmented_ketchup.json
 b03c2ccf0ac1aca1c08a77648f923c900731bfab data/powerful_sauces/advancements/recipes/food/brine.json

@@ -1,6 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
-#issueTrackerURL = ""
+issueTrackerURL = "https://github.com/Discusser/powerful_sauces/issues"
+clientSideOnly = false
 license = "MIT"
 
 [[mods]]
@@ -32,4 +33,11 @@ modId = "architectury"
 mandatory = true
 versionRange = "[9.2.14,)"
 ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.powerful_sauces]]
+modId = "croptopia"
+mandatory = true
+versionRange = "[3.0.4,)"
+ordering = "NONE"
 side = "BOTH"
