@@ -12,10 +12,10 @@
       "item": "minecraft:egg"
     },
     {
-      "item": "powerful_sauces:spice_mix"
+      "tag": "${dependent}:spice_mixes"
     },
     {
-      "item": "powerful_sauces:vinegar"
+      "tag": "${dependent}:vinegars"
     }
   ],
   "result": {

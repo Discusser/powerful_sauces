@@ -9,7 +9,7 @@
       "item": "powerful_sauces:mayonnaise"
     },
     {
-      "item": "powerful_sauces:chopped_pickle"
+      "tag": "${dependent}:chopped_pickles"
     },
     {
       "tag": "${dependent}:lemons"
@@ -18,7 +18,7 @@
       "item": "minecraft:sugar"
     },
     {
-      "tag": "${dependent}:pepper"
+      "tag": "${dependent}:peppers"
     }
   ],
   "result": {

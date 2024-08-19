@@ -9,7 +9,7 @@
       "tag": "${dependent}:cucumbers"
     },
     {
-      "item": "powerful_sauces:brine"
+      "tag": "${dependent}:brines"
     },
     {
       "tag": "${dependent}:garlic"

@@ -6,10 +6,10 @@
       "tag": "${dependent}:water_bottles"
     },
     {
-      "item": "powerful_sauces:vinegar"
+      "tag": "${dependent}:vinegars"
     },
     {
-      "item": "powerful_sauces:spice_mix"
+      "tag": "${dependent}:spice_mixes"
     }
   ],
   "result": {

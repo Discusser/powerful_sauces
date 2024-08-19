@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "powerful_sauces:pickle"
-            ]
+            "tag": "${dependent}:pickles"
           }
         ]
       },

@@ -6,7 +6,7 @@
       "tag": "${dependent}:knives"
     },
     {
-      "item": "powerful_sauces:pickle"
+      "tag": "${dependent}:pickles"
     }
   ],
   "result": {

@@ -6,13 +6,13 @@
       "item": "powerful_sauces:sauce_bottle"
     },
     {
-      "item": "powerful_sauces:tomato_paste"
+      "tag": "${dependent}:tomato_pastes"
     },
     {
       "item": "minecraft:sugar"
     },
     {
-      "item": "powerful_sauces:spice_mix"
+      "tag": "${dependent}:spice_mixes"
     }
   ],
   "result": {

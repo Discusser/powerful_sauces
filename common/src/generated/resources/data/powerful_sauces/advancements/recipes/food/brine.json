@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "powerful_sauces:spice_mix"
-            ]
+            "tag": "${dependent}:spice_mixes"
           }
         ]
       },

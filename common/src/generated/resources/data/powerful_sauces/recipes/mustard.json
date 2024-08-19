@@ -15,10 +15,10 @@
       "tag": "${dependent}:lemons"
     },
     {
-      "tag": "${dependent}:salt"
+      "tag": "${dependent}:salts"
     },
     {
-      "item": "powerful_sauces:spice_mix"
+      "tag": "${dependent}:spice_mixes"
     }
   ],
   "result": {

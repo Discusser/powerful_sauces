@@ -6,19 +6,19 @@
       "item": "powerful_sauces:sauce_bottle"
     },
     {
-      "item": "powerful_sauces:tomato_paste"
+      "tag": "${dependent}:tomato_pastes"
     },
     {
-      "item": "powerful_sauces:spice_mix"
+      "tag": "${dependent}:spice_mixes"
     },
     {
-      "item": "powerful_sauces:vinegar"
+      "tag": "${dependent}:vinegars"
     },
     {
       "tag": "${dependent}:water_bottles"
     },
     {
-      "item": "powerful_sauces:brown_sugar"
+      "tag": "${dependent}:brown_sugars"
     },
     {
       "item": "powerful_sauces:worcestershire"

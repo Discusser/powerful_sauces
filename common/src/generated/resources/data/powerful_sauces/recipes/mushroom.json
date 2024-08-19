@@ -23,7 +23,7 @@
       "tag": "${dependent}:olive_oils"
     },
     {
-      "item": "powerful_sauces:spice_mix"
+      "tag": "${dependent}:spice_mixes"
     }
   ],
   "result": {

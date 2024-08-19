@@ -80,16 +80,16 @@ processResources {
         expand version: project.version
     }
 
-    from(project(":common").file("src/generated/resources")) {
-        include('**/data/**')
-        include('**/dependents/**')
-        expand "dependent": "c"
-        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    [project(":common").file("src/generated/resources"), project(":common").file("src/main/resources")].each { src ->
+        from(src) {
+            include('**/data/**/*.json')
+            include('**/dependents/**/*.json')
+            expand "dependent": "c"
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
     }
 
     doLast {
-        println(fileTree("${buildDir}/resources/main/dependents/platform").files.name)
-        println("Copying stuff now")
         copy {
             from "${buildDir}/resources/main/dependents/platform"
             include "**/**/*.json"

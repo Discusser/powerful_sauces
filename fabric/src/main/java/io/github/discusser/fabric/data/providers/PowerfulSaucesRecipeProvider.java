@@ -48,7 +48,7 @@ public class PowerfulSaucesRecipeProvider extends FabricRecipeProvider {
                 .requires(PowerfulSaucesItems.SAUCE_BOTTLE.get());
     }
 
-    public TagKey<Item> globalTag(String name) {
+    public static TagKey<Item> globalTag(String name) {
         return TagKey.create(Registries.ITEM, PowerfulSaucesUtil.globalLoc(name));
     }
 
@@ -57,82 +57,82 @@ public class PowerfulSaucesRecipeProvider extends FabricRecipeProvider {
                 .pattern("GGG").define('G', Items.GLASS_PANE)
                 .pattern("G G").define('B', ItemTags.BUTTONS)
                 .pattern(" B ").save(consumer);
-        shapelessUnlockedBy(PowerfulSaucesItems.SPICE_MIX.get(), 8, globalTag("vegetables"))
-                .requires(globalTag("onions"))
-                .requires(globalTag("garlic"))
-                .requires(globalTag("mustard"))
-                .requires(globalTag("celery")).save(consumer);
-        shapelessUnlockedBy(PowerfulSaucesItems.VINEGAR.get(), 2, globalTag("wines"))
-                .requires(globalTag("cooking_pots"))
-                .requires(globalTag("water_bottles"))
+        shapelessUnlockedBy(PowerfulSaucesItems.SPICE_MIX.get(), 8, Tags.VEGETABLE)
+                .requires(Tags.ONION)
+                .requires(Tags.GARLIC)
+                .requires(Tags.MUSTARD)
+                .requires(Tags.CELERY).save(consumer);
+        shapelessUnlockedBy(PowerfulSaucesItems.VINEGAR.get(), 2, Tags.JUICE)
+                .requires(Tags.COOKING_POT)
+                .requires(Tags.WATER_BOTTLE)
                 .requires(Items.SUGAR)
-                .requires(globalTag("juices")).save(consumer);
+                .requires(Tags.JUICE).save(consumer);
         shapelessUnlockedBy(PowerfulSaucesItems.BROWN_SUGAR.get(), 1, Items.SUGAR)
-                .requires(globalTag("molasses"))
+                .requires(Tags.MOLASSES)
                 .requires(Items.SUGAR).save(consumer);
-        shapelessUnlockedBy(PowerfulSaucesItems.TOMATO_PASTE.get(), 1, globalTag("tomatoes"))
-                .requires(globalTag("mortar_and_pestles"))
-                .requires(globalTag("tomatoes")).save(consumer);
-        shapelessUnlockedBy(PowerfulSaucesItems.PICKLE.get(), 1, globalTag("cucumbers"))
-                .requires(globalTag("cooking_pots"))
-                .requires(globalTag("cucumbers"))
-                .requires(PowerfulSaucesItems.BRINE.get())
-                .requires(globalTag("garlic")).save(consumer);
-        shapelessUnlockedBy(PowerfulSaucesItems.CHOPPED_PICKLE.get(), 4, PowerfulSaucesItems.PICKLE.get())
-                .requires(globalTag("knives"))
-                .requires(PowerfulSaucesItems.PICKLE.get()).save(consumer);
-        shapelessUnlockedBy(PowerfulSaucesItems.BRINE.get(), 8, PowerfulSaucesItems.SPICE_MIX.get())
-                .requires(globalTag("water_bottles"))
-                .requires(PowerfulSaucesItems.VINEGAR.get())
-                .requires(PowerfulSaucesItems.SPICE_MIX.get()).save(consumer);
+        shapelessUnlockedBy(PowerfulSaucesItems.TOMATO_PASTE.get(), 1, Tags.TOMATO)
+                .requires(Tags.MORTAR_AND_PESTLE)
+                .requires(Tags.TOMATO).save(consumer);
+        shapelessUnlockedBy(PowerfulSaucesItems.PICKLE.get(), 1, Tags.CUCUMBER)
+                .requires(Tags.COOKING_POT)
+                .requires(Tags.CUCUMBER)
+                .requires(Tags.BRINE)
+                .requires(Tags.GARLIC).save(consumer);
+        shapelessUnlockedBy(PowerfulSaucesItems.CHOPPED_PICKLE.get(), 4, Tags.PICKLE)
+                .requires(Tags.KNIFE)
+                .requires(Tags.PICKLE).save(consumer);
+        shapelessUnlockedBy(PowerfulSaucesItems.BRINE.get(), 8, Tags.SPICE_MIX)
+                .requires(Tags.WATER_BOTTLE)
+                .requires(Tags.VINEGAR)
+                .requires(Tags.SPICE_MIX).save(consumer);
     }
 
     public void buildSauceRecipes(Consumer<FinishedRecipe> consumer) {
         shapelessSauceBottleRecipe(PowerfulSaucesItems.KETCHUP.get(), 2)
-                .requires(PowerfulSaucesItems.TOMATO_PASTE.get())
+                .requires(Tags.TOMATO_PASTE)
                 .requires(Items.SUGAR)
-                .requires(PowerfulSaucesItems.SPICE_MIX.get()).save(consumer);
+                .requires(Tags.SPICE_MIX).save(consumer);
         shapelessSauceBottleRecipe(PowerfulSaucesItems.MUSTARD.get(), 2)
-                .requires(globalTag("water_bottles"))
-                .requires(globalTag("seeds/mustard"))
-                .requires(globalTag("lemons"))
-                .requires(globalTag("salt"))
-                .requires(PowerfulSaucesItems.SPICE_MIX.get()).save(consumer);
+                .requires(Tags.WATER_BOTTLE)
+                .requires(Tags.SEED_MUSTARD)
+                .requires(Tags.LEMON)
+                .requires(Tags.SALT)
+                .requires(Tags.SPICE_MIX).save(consumer);
         shapelessSauceBottleRecipe(PowerfulSaucesItems.MAYONNAISE.get(), 2)
-                .requires(globalTag("olive_oils"))
+                .requires(Tags.OLIVE_OIL)
                 .requires(Items.EGG)
-                .requires(PowerfulSaucesItems.SPICE_MIX.get())
-                .requires(PowerfulSaucesItems.VINEGAR.get()).save(consumer);
+                .requires(Tags.SPICE_MIX)
+                .requires(Tags.VINEGAR).save(consumer);
         shapelessSauceBottleRecipe(PowerfulSaucesItems.BARBECUE.get(), 2)
                 .requires(PowerfulSaucesItems.KETCHUP.get())
-                .requires(PowerfulSaucesItems.BROWN_SUGAR.get())
-                .requires(PowerfulSaucesItems.VINEGAR.get())
-                .requires(PowerfulSaucesItems.SPICE_MIX.get()).save(consumer);
+                .requires(Tags.BROWN_SUGAR)
+                .requires(Tags.VINEGAR)
+                .requires(Tags.SPICE_MIX).save(consumer);
         shapelessSauceBottleRecipe(PowerfulSaucesItems.WORCESTERSHIRE.get(), 2)
-                .requires(PowerfulSaucesItems.VINEGAR.get())
-                .requires(PowerfulSaucesItems.BROWN_SUGAR.get())
-                .requires(globalTag("salt"))
-                .requires(globalTag("anchovies"))
-                .requires(PowerfulSaucesItems.SPICE_MIX.get()).save(consumer);
+                .requires(Tags.VINEGAR)
+                .requires(Tags.BROWN_SUGAR)
+                .requires(Tags.SALT)
+                .requires(Tags.ANCHOVY)
+                .requires(Tags.SPICE_MIX).save(consumer);
         shapelessSauceBottleRecipe(PowerfulSaucesItems.MUSHROOM.get(), 2)
                 .requires(Ingredient.of(Items.BROWN_MUSHROOM, Items.RED_MUSHROOM))
-                .requires(globalTag("cheeses"))
-                .requires(globalTag("milks"))
-                .requires(globalTag("olive_oils"))
-                .requires(PowerfulSaucesItems.SPICE_MIX.get()).save(consumer);
+                .requires(Tags.CHEESE)
+                .requires(Tags.MILK)
+                .requires(Tags.OLIVE_OIL)
+                .requires(Tags.SPICE_MIX).save(consumer);
         shapelessSauceBottleRecipe(PowerfulSaucesItems.CHILI.get(), 3)
-                .requires(PowerfulSaucesItems.TOMATO_PASTE.get())
-                .requires(PowerfulSaucesItems.SPICE_MIX.get())
-                .requires(PowerfulSaucesItems.VINEGAR.get())
-                .requires(globalTag("water_bottles"))
-                .requires(PowerfulSaucesItems.BROWN_SUGAR.get())
+                .requires(Tags.TOMATO_PASTE)
+                .requires(Tags.SPICE_MIX)
+                .requires(Tags.VINEGAR)
+                .requires(Tags.WATER_BOTTLE)
+                .requires(Tags.BROWN_SUGAR)
                 .requires(PowerfulSaucesItems.WORCESTERSHIRE.get()).save(consumer);
         shapelessSauceBottleRecipe(PowerfulSaucesItems.TARTAR.get(), 3)
                 .requires(PowerfulSaucesItems.MAYONNAISE.get())
-                .requires(PowerfulSaucesItems.CHOPPED_PICKLE.get())
-                .requires(globalTag("lemons"))
+                .requires(Tags.CHOPPED_PICKLE)
+                .requires(Tags.LEMON)
                 .requires(Items.SUGAR)
-                .requires(globalTag("pepper")).save(consumer);
+                .requires(Tags.PEPPER).save(consumer);
     }
 
     public void buildAugmentedSauceRecipes(Consumer<FinishedRecipe> consumer) {
@@ -148,5 +148,37 @@ public class PowerfulSaucesRecipeProvider extends FabricRecipeProvider {
         buildIngredientRecipes(consumer);
         buildSauceRecipes(consumer);
         buildAugmentedSauceRecipes(consumer);
+    }
+
+    public static class Tags {
+        public static final TagKey<Item> ANCHOVY = globalTag("anchovies");
+        public static final TagKey<Item> BRINE = globalTag("brines");
+        public static final TagKey<Item> BROWN_SUGAR = globalTag("brown_sugars");
+        public static final TagKey<Item> CELERY = globalTag("celery");
+        public static final TagKey<Item> CHEESE = globalTag("cheeses");
+        public static final TagKey<Item> CHOPPED_PICKLE = globalTag("chopped_pickles");
+        public static final TagKey<Item> COOKING_POT = globalTag("cooking_pots");
+        public static final TagKey<Item> CUCUMBER = globalTag("cucumbers");
+        public static final TagKey<Item> GARLIC = globalTag("garlic");
+        public static final TagKey<Item> JUICE = globalTag("juices");
+        public static final TagKey<Item> KNIFE = globalTag("knives");
+        public static final TagKey<Item> LEMON = globalTag("lemons");
+        public static final TagKey<Item> MILK = globalTag("milks");
+        public static final TagKey<Item> MOLASSES = globalTag("molasses");
+        public static final TagKey<Item> MORTAR_AND_PESTLE = globalTag("mortar_and_pestles");
+        public static final TagKey<Item> MUSTARD = globalTag("mustard");
+        public static final TagKey<Item> OLIVE_OIL = globalTag("olive_oils");
+        public static final TagKey<Item> ONION = globalTag("onions");
+        public static final TagKey<Item> PICKLE = globalTag("pickles");
+        public static final TagKey<Item> PEPPER = globalTag("peppers");
+        public static final TagKey<Item> SALT = globalTag("salts");
+        public static final TagKey<Item> SEED_MUSTARD = globalTag("seeds/mustard");
+        public static final TagKey<Item> SPICE_MIX = globalTag("spice_mixes");
+        public static final TagKey<Item> TOMATO = globalTag("tomatoes");
+        public static final TagKey<Item> TOMATO_PASTE = globalTag("tomato_pastes");
+        public static final TagKey<Item> VEGETABLE = globalTag("vegetables");
+        public static final TagKey<Item> VINEGAR = globalTag("vinegars");
+        public static final TagKey<Item> WATER_BOTTLE = globalTag("water_bottles");
+
     }
 }
