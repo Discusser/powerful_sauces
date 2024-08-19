@@ -35,6 +35,6 @@
     "java": ">=17",
     "architectury": ">=9.2.14",
     "fabric-api": "*",
-    "croptopia": ">=3.0.4"
+    "croptopia": "~3.0.0"
   }
 }
